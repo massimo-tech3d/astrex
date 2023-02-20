@@ -16,7 +16,8 @@ by adding `astrex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:astrex, "~> 0.3.0"}
+    #{:astrex, "~> 0.3.0"}
+	{:dep_from_git, git: "https://github.com/massimo-tech3d/astrex.git", tag: "0.3.0"}
   ]
 end
 ```
