@@ -28,7 +28,9 @@ defmodule Astrex.DeepSky do
     - nebulas: (all kinds)
   """
 
-  @catalog "#{:code.priv_dir(:astrex)}/NGC.csv"
+#  @catalog "#{:code.priv_dir(:astrex)}/NGC.csv"
+  @catalog Application.app_dir(:astrex, "priv/NGC.csv")
+
   @galaxies ["G", "GGroup", "GPair", "GTrpl"]
   @openclusters ["OCl"]
   @globularclusters ["GCl", "CR+N"]
