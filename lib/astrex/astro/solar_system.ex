@@ -71,8 +71,7 @@ defmodule Astrex.Astro.SolarSystem do
     # distance from earth - not used but could be returned
     _rvec = sqrt(xeq * xeq + yeq * yeq + zeq * zeq)
 
-    # %{ra: ra/15, dec: dec, rvec: rvec}
-    %{ra: ra / 15, dec: dec}
+    %{ra: ra, dec: dec}
   end
 
   # returns the mean orbital elements for planet on day

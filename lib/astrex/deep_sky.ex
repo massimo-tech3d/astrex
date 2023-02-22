@@ -47,7 +47,7 @@ defmodule Astrex.DeepSky do
   i.e. above the horizon
 
   ## Examples
-    iex> Astrex.start_link
+    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.find_object(:messier, 1)
     %{
       ar: "05:34:31.97",
@@ -59,7 +59,7 @@ defmodule Astrex.DeepSky do
       messier: "1"
     }
 
-    iex> Astrex.start_link
+    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.find_object(:ngc, 1952)
     %{
       ar: "05:34:31.97",
@@ -74,14 +74,14 @@ defmodule Astrex.DeepSky do
     NGC 6554 is more than 15° below the horizon
     (on testing fake datetime and location)
 
-    iex> Astrex.start_link
+    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.find_object(:ngc, 6554, -15)
     %{}
 
     but it is found with searches down to -25° below the horizon
     (on testing fake datetime and location)
 
-    iex> Astrex.start_link
+    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.find_object(:ngc, 6554, -25)
     %{
       ar: "18:09:23.98",
@@ -120,7 +120,7 @@ defmodule Astrex.DeepSky do
   returns a list of objects
 
   ## Examples
-    iex> Astrex.start_link
+    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.select_objects(10, :nebulas, true, 25)
     [
       ["NGC6720", "PN", "18:53:35.01", "+33:01:42.9", "Lyr", "9.70", "57"],
@@ -129,7 +129,7 @@ defmodule Astrex.DeepSky do
 
     Two Messier nebulas found 25°+ above the horizon at the mock time/mock location
 
-    iex> Astrex.start_link
+    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.select_objects(10, :nebulas, 25)
     [
       ["IC0405", "Neb", "05:16:29.48", "+34:21:22.2", "Aur", "10.00", ""],

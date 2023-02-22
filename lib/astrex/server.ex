@@ -1,24 +1,27 @@
 defmodule Astrex.Server do
   @moduledoc """
-  TODO ELABORA !!!!
-  Functions for astronomical coordinates calculations and objects positions
-  - coordinates conversions between AR/DEC and ALT/AZ and viceversa
-  - ALT/AZ speed
-  - RA/DEC positions of Sun, Moon, Planets at a given day/time
-  - RA/DEC positions of full NGC/IC database objects
+    Provides a GenServer to hold the local coordinates. This is useful for
+    applications that are localized (e.g. telescope control) and makes possible
+    to access the functions via the Astrex module, without supplying the local
+    coordinates each time.
+
+    Use of the GenServer is by no means mandatory. All the functions can be accessed
+    via the Astrex.Astro.* modules.
+
+    If the GenServer is used it is responsibility of the application to start, initialize
+    and supervise it
   """
 
-  require Logger
   use GenServer
 
   # client API
 
-  # def start_link(_state \\ [], _opts \\ []) do
+  @doc """
+    The Genserver is initialized using Greenwich coordinates, unless local coordinates are specified
+  """
   def start_link(state = %{lat: _lat, long: _long} \\ %{lat: 51.477928, long: 0.0}, _opts \\ []) do
-    # GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
-
   def get_ll() do
     GenServer.call(__MODULE__, :get_coords)
   end
@@ -27,23 +30,29 @@ defmodule Astrex.Server do
     GenServer.cast(__MODULE__, {:set_coords, ll})
   end
 
+  def stop() do
+    GenServer.cast(__MODULE__, :stop)
+  end
+
   # server API
 
-  # def init(:ok) do
   def init(lat_long = %{lat: _lat, long: _long} \\ %{lat: 51.477928, long: 0.0}) do
-    # lat_long = %{lat: 51.477928, long: 0.0}  # Greenwich coordinates
-    Logger.info("Starting Astrex GenServer")
     {:ok, lat_long}
   end
 
-  @doc """
-    No calls are used but callback is mandatory
-  """
+  def terminate(_, _state) do
+
+  end
+
   def handle_call(:get_coords, _from, state) do
     {:reply, state, state}
   end
 
   def handle_cast({:set_coords, %{lat: lat, long: long}}, _state) do
     {:noreply, %{lat: lat, long: long}}
+  end
+
+  def handle_cast(:stop, state) do
+    {:stop, :normal, state}
   end
 end

@@ -1,10 +1,8 @@
-defmodule Astrex.GeoMagTest do
-  use ExUnit.Case, async: true
+defmodule GeoMagTest do
+  use ExUnit.Case
 
   test "magnetic declination" do
-    # assert Astrex.Common.rad2hours(5) == 19.09859317102744
-
-    {dec, dip, ti, epoch} = Astrex.GeoMag.mag_decl(45.5, 9.15)
+    {dec, dip, ti, epoch} = Astrex.Astro.GeoMag.mag_declination(%{lat: 45.5, long: 9.15})
     assert_in_delta(dec, 3.3219, 0.001)
     assert_in_delta(dip, 61.7099, 0.001)
     assert_in_delta(ti, 47715.721, 0.001)

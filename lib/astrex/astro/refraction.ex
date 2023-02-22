@@ -19,16 +19,12 @@ defmodule Astrex.Astro.Refraction do
   alias Astrex.Types, as: T
 
   @doc """
-  Receives a T.altazimuth map including the apparent altitude
-  Returns a T.altazimuth map including the true altitude
+    Receives a T.altazimuth map including the apparent altitude
+    Returns a T.altazimuth map including the true altitude
 
-  The apparent altitude corresponds to the digital setting circles readings
-  The true altitude allows to precisely calculate the equatorial coordinates
-  of the point the telescope is aiming at.
-
-  ## Examples:
-    iex> Astrex.Astro.Refraction.true_alt(%{alt: 45, az: 180})
-    %{alt: 44.98341920053572, az: 180}
+    The apparent altitude corresponds to the digital setting circles readings
+    The true altitude allows to precisely calculate the equatorial coordinates
+    of the point the telescope is aiming at.
   """
   @spec true_alt(T.altazimuth()) :: T.altazimuth()
   def true_alt(%{alt: apparent_alt, az: az}) do
@@ -41,16 +37,12 @@ defmodule Astrex.Astro.Refraction do
   end
 
   @doc """
-  Receives a T.altazimuth map including the true altitude
-  Returns a T.altazimuth map including the apparent altitude
+    Receives a T.altazimuth map including the true altitude
+    Returns a T.altazimuth map including the apparent altitude
 
-  The true altitude is calculated from the equatorial coordinates of the object
-  The apparent altitude corresponds to where the digital setting circles must aim
-  to center the object
-
-  ## Examples:
-    iex> Astrex.Astro.Refraction.apparent_alt(%{alt: 45, az: 180})
-    %{alt: 45.016878460981225, az: 180}
+    The true altitude is calculated from the equatorial coordinates of the object
+    The apparent altitude corresponds to where the digital setting circles must aim
+    to center the object
   """
   @spec apparent_alt(T.altazimuth()) :: T.altazimuth()
   def apparent_alt(%{alt: true_alt, az: az}) do

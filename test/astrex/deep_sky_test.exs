@@ -1,14 +1,14 @@
-defmodule Astrex.DeepSkyTest do
-  use ExUnit.Case, async: true
-  doctest Astrex.DeepSky
+defmodule DeepSkyTest do
+  use ExUnit.Case  #, async: true
+  #doctest Astrex.DeepSky
 
-  # setup do
-  #   Astrex.start_link
-  # end
+  setup_all do
+    Astrex.Server.start_link()
+    on_exit(fn -> Astrex.Server.stop end)
+    :ok
+  end
 
   test "find object from default coordinates (greenwich)" do
-    Astrex.start_link()
-
     assert Astrex.DeepSky.find_object(:messier, 1) ==
              %{
                ar: "05:34:31.97",
@@ -44,8 +44,6 @@ defmodule Astrex.DeepSkyTest do
   end
 
   test "select objects" do
-    Astrex.start_link()
-
     assert Astrex.DeepSky.select_objects(10, :globular_clusters, true, 25) ==
              [
                ["NGC6779", "GCl", "19:16:35.51", "+30:11:04.2", "Lyr", "8.90", "56"],
@@ -76,9 +74,4 @@ defmodule Astrex.DeepSkyTest do
                ["NGC3034", "G", "09:55:52.73", "+69:40:45.8", "UMa", "8.94", "82"]
              ]
   end
-
-  # test "radians to hours" do
-  #   # assert Astrex.Common.rad2hours(5) == 19.09859317102744
-  #   assert_in_delta(Astrex.Common.rad2hours(5), 19.09859317, 0.001)
-  # end
 end

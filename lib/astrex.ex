@@ -24,7 +24,7 @@ defmodule Astrex do
     and use the system time. This is handy for usage by applications that are geographically specific
     and work in real time, i.e. for telescope control.
 
-    However all the functions cab be accessed directly from the respective modules by specifying the
+    However, all the functions cab be accessed directly from the respective modules by specifying the
     desired coordinate and timestamp.
 
     Bonus
@@ -43,8 +43,10 @@ defmodule Astrex do
     - Azimuth South is 180°
     - Azimuth West is 270°
 
+  ## Units
     All data need to be expressed in degrees, not in deegrees:minutes:seconds nor in radians
 
+  ## References
     The source of the algorithms is indicated in the docs of each function.
   """
 
@@ -83,7 +85,7 @@ defmodule Astrex do
   end
 
   @doc """
-    Returns the position (equatorial coordinates) of the Moon or planets (including Pluto).
+    Returns the current equatorial coordinates of the Moon or planets (including Pluto).
   """
   @spec where_is(T.solar_system()) :: T.equatorial()
   def where_is(ss_object) do
@@ -118,7 +120,8 @@ defmodule Astrex do
         Telescope" R.A.Laing, Royal Greenwich Observatory" pages 2/3
 
     ## Examples
-      iex> Astrex.Astro.sidereal_speeds(%{alt: 45, az: 10})
+      iex> Astrex.sidereal_speeds(%{alt: 45, az: 10})
+      {4.5061593459496844e-4, 7.042059181503614e-4}
   """
   @spec sidereal_speeds(T.altazimuth()) :: {float, float}
   def sidereal_speeds(coords = %{alt: _alt, az: _az}) do
@@ -158,7 +161,8 @@ defmodule Astrex do
     the difference is not enough to impact on motors rotation Hz
 
     ## Examples
-      iex> Astrex.Astro.sidereal_speeds2(Astrex.Astro.az2eq(%{alt: 45, az: 10}), 1)
+      iex> Astrex.sidereal_speeds2(%{alt: 45, az: 10}, 1)
+      {4.5187822290415625e-4, 7.061364708533802e-4}
   """
   @spec sidereal_speeds2(T.equatorial(), integer()) :: {float, float}
   def sidereal_speeds2(coords = %{ra: _ra, dec: _dec}, secs) do

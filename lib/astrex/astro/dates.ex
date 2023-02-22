@@ -21,28 +21,8 @@ defmodule Astrex.Astro.Dates do
   @doc """
     Greenwitch Mean Sidereal Time for a given day/time
 
-  ## Examples
-    iex> date = ~N[1987-04-10 00:00:00]
-
-    iex> Astrex.Astro.Dates.gmst(date)
-
-    13.179444444444444
-
-    iex> date = ~N[1987-04-10 19:21:00]
-
-    iex> Astrex.Astro.Dates.gmst(date)
-
-    8.582524886455587
-
-  ## Tests require Astrex server initialized with testin coordinates and mock time/location
-
-    iex> Astrex.Common.gmst(Astrex.Common.ndt_now()) |> Astrex.Common.hours2hms
-
-    "0:44:47"
-
-  ## site where to confirm the calculation for arbitrary location and current time
-
-      https://astro.subhashbose.com/siderealtime/?longitude=9.15
+    site where to confirm the calculation for arbitrary location and current time
+    https://astro.subhashbose.com/siderealtime/?longitude=9.15
   """
   @spec gmst(%NaiveDateTime{}) :: float()
   def gmst(dt = %NaiveDateTime{}) do
@@ -75,17 +55,7 @@ defmodule Astrex.Astro.Dates do
 
     ## Examples
         iex> Astrex.Astro.Dates.local_sidereal_time(9.15, Astrex.Common.ndt_now()) |> Astrex.Common.hours2hms
-        "1:21:23"
-
-        iex> Astrex.Astro.Dates.local_sidereal_time(9.15) |> Astrex.Common.hours2hms
-        "1:21:23"
-
-        iex> Astrex.start_link
-        iex> Astrex.Astro.Dates.local_sidereal_time() |> Astrex.Common.hours2hms
-        "0:44:47"
-
-    Since no specific location is passed to the third examples, the longitude is taken
-    from the Astrex Genserver.
+        "00:08:11"
   """
   @spec local_sidereal_time(float(), %NaiveDateTime{}) :: float()
   def local_sidereal_time(long, dt = %NaiveDateTime{}) do
@@ -95,25 +65,15 @@ defmodule Astrex.Astro.Dates do
 
   @doc """
     returns julian day for the given date/time.
-    calculations according to Jean Meeus "Astronomical Algorithms"
-    chapter 7 - Julian Day
+
+    reference: calculations according to Jean Meeus "Astronomical Algorithms"
+               chapter 7 - Julian Day
 
     receives a NaiveDateTime struct
     returns a float day.decimals
 
     if decimals are not necessary this can be
-    easily replaced by the function:
-      Timex.to_julian/1
-
-    ## Examples
-      iex> date = ~N[2023-02-01 16:32:47.565216]
-      iex> Astrex.Astro.JulianDay.julian_day(date)
-      2459977.0439814813
-
-      iex> date = ~N[1957-10-04 hh:mm:ss]  # convert day 0.81 to hms
-      iex> Astrex.Astro.JulianDay.julian_day(date)
-      2436116.31
-
+    easily replaced by the function:  Timex.to_julian/1
   """
   @spec julian_day(%NaiveDateTime{}) :: float()
   def julian_day(day = %NaiveDateTime{}) do
@@ -131,12 +91,21 @@ defmodule Astrex.Astro.Dates do
     trunc(365.25 * (y + 4716)) + trunc(30.6001 * (m + 1)) + d + bb - 1524.5
   end
 
-  # from 1.1.2000
+  @doc """
+    returns the julian centuries from 1.1.2000
+  """
+  @spec julian_century(%NaiveDateTime{}) :: float()
   def julian_century(day = %NaiveDateTime{}) do
     (julian_day(day) - 2_451_545) / 36525
   end
 
-  # this one works -- see Meeus Chapter 7
+  @doc """
+    returns the number of the specified date from 31.12.2000
+
+    reference: calculations according to Jean Meeus "Astronomical Algorithms"
+               chapter 7 - Julian Day
+  """
+  @spec day_number(%NaiveDateTime{}) :: float()
   def day_number(day = %NaiveDateTime{}) do
     d = day.day
     m = day.month
