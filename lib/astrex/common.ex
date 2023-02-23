@@ -19,6 +19,7 @@ defmodule Astrex.Common do
     case time_source do
       :real -> NaiveDateTime.utc_now()
       :mock -> Application.get_env(:astrex, :mock_time)
+      _ -> NaiveDateTime.utc_now()
     end
   end
 
