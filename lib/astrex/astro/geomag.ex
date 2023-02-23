@@ -2,6 +2,7 @@ defmodule Astrex.Astro.GeoMag do
   import Math
   alias Astrex.Common
   alias Astrex.Types, as: T
+  require Logger
 
   @moduledoc """
     Calculates the Earth Magnetic field basing on local coordinates and current time
@@ -598,6 +599,7 @@ defmodule Astrex.Astro.GeoMag do
   #         header: map including the header fields
   #         data:   list of maps with the data. one map per row
   defp read_data do
+    Logger.info("data file = #{@coefficients}")
     {:ok, data} = File.read(@coefficients)
 
     [header | data] =
