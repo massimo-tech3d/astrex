@@ -28,8 +28,9 @@ defmodule Astrex.DeepSky do
     - nebulas: (all kinds)
   """
 
-#  @catalog "#{:code.priv_dir(:astrex)}/NGC.csv"
-  @catalog Application.app_dir(:astrex, "priv/NGC.csv")
+  defp catalog do
+    Application.app_dir(:astrex, "priv/NGC.csv")
+  end
 
   @galaxies ["G", "GGroup", "GPair", "GTrpl"]
   @openclusters ["OCl"]
@@ -183,7 +184,7 @@ defmodule Astrex.DeepSky do
 
   # Returns a stream of the catalog file, lines are trimmed and stripped
   defp open_csv() do
-    File.stream!(@catalog)
+    File.stream!(catalog())
     # trims the line
     |> Stream.map(&String.trim(&1))
     # splits line into columns

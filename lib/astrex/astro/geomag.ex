@@ -23,6 +23,10 @@ defmodule Astrex.Astro.GeoMag do
         https://github.com/cmweiss/geomag/blob/master/geomag/geomag/geomag.py
   """
 
+  defp coefficients do
+    "#{:code.priv_dir(:astrex)}/WMM.COF"
+  end
+
   @doc """
     Requires latitude and longitude expressed in decimal degrees (not deg, min, sec)
     - Latitude: between 0° and 90° -- southern latitudes are negative
@@ -597,9 +601,7 @@ defmodule Astrex.Astro.GeoMag do
   #         header: map including the header fields
   #         data:   list of maps with the data. one map per row
   defp read_data do
-    coefficients = "#{:code.priv_dir(:astrex)}/WMM.COF"
-    Logger.info("data file = #{coefficients}")
-    {:ok, data} = File.read(coefficients)
+    {:ok, data} = File.read(coefficients())
 
     [header | data] =
       String.split(data, "\n")
