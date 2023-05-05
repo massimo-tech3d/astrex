@@ -29,7 +29,7 @@ defmodule Astrex.Server do
   def start_link(state = %{lat: _lat, long: _long}, _opts) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
-  def start_link(state, _opts) do
+  def start_link(_state, _opts) do
     GenServer.start_link(__MODULE__, %{lat: 51.477928, long: 0.0}, name: __MODULE__)
   end
 
