@@ -226,6 +226,7 @@ defmodule Astrex.DeepSky do
     end)
   end
 
+  # TODO capture all clause to skip this filter, pass all
   # Filters out all objects that are not of the specified type
   defp filter_type(st, type) do
     labels =
@@ -234,6 +235,7 @@ defmodule Astrex.DeepSky do
         :open_clusters -> @openclusters
         :globular_clusters -> @globularclusters
         :nebulas -> @nebulas
+        _ -> @galaxies ++ @openclusters ++ @globularclusters ++ @nebulas  # no filter applies
       end
 
     Stream.filter(st, fn

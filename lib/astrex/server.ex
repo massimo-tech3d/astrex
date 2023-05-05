@@ -12,16 +12,27 @@ defmodule Astrex.Server do
     and supervise it
   """
 
+  # TODO DEFINE childspec define start_link with empty [] and %{} as initial state
+
   use GenServer
 
   # client API
 
+  # def child_spec(arg) do
+  #   %{id: Astrex, start: {Astrex, :start_link, [arg]}}
+  # end
+
   @doc """
     The Genserver is initialized using Greenwich coordinates, unless local coordinates are specified
   """
-  def start_link(state = %{lat: _lat, long: _long} \\ %{lat: 51.477928, long: 0.0}, _opts \\ []) do
+  def start_link(state \\ %{lat: 51.477928, long: 0.0}, _opts \\ [])
+  def start_link(state = %{lat: _lat, long: _long}, _opts) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
+  def start_link(state, _opts) do
+    GenServer.start_link(__MODULE__, %{lat: 51.477928, long: 0.0}, name: __MODULE__)
+  end
+
   def get_ll() do
     GenServer.call(__MODULE__, :get_coords)
   end
