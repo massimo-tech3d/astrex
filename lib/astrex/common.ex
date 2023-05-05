@@ -103,7 +103,7 @@ defmodule Astrex.Common do
     [hour, minute, seconds] = String.split(angle, ":")
     {h, _} = Integer.parse(hour)
     {m, _} = Integer.parse(minute)
-    {s, _} = Integer.parse(seconds)
+    {s, _} = Float.parse(seconds)
 
     if h < 0 do
       -(abs(h) + m / 60 + s / 3600)
@@ -122,7 +122,7 @@ defmodule Astrex.Common do
     [deg, min, sec] = String.split(angle, ":")
     {d, _} = Integer.parse(deg)
     {m, _} = Integer.parse(min)
-    {s, _} = Integer.parse(sec)
+    {s, _} = Float.parse(sec)
 
     if d < 0 do
       -(abs(d) + m / 60 + s / 3600)
