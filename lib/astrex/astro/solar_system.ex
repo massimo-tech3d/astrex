@@ -6,7 +6,7 @@ defmodule Astrex.Astro.SolarSystem do
     This module exports only one function to retrieve the current equatorial
     coordinates of the 9 planets (including Pluto) and of the Moon.
 
-    The coordinates are returned in DEGREES (declination) and HOURS (right ascension)
+    The coordinates are returned in DMS (declination) and HMS (right ascension)
 
     NOTE: currently works quite well for planets, calculations for the Moon
           are accurate to some minutes of arc (4' in 50% of cases)
@@ -27,7 +27,7 @@ defmodule Astrex.Astro.SolarSystem do
   @spec where_is(T.solar_system(), %NaiveDateTime{}) :: T.equatorial()
   def where_is(:moon, dt = %NaiveDateTime{}) do
     %{ra: ra, dec: dec} = Astrex.Astro.Moon.moon(dt)
-    %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
+    %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
   end
 
   def where_is(planet, dt = %NaiveDateTime{}) do
@@ -73,7 +73,9 @@ defmodule Astrex.Astro.SolarSystem do
     # distance from earth - not used but could be returned
     _rvec = sqrt(xeq * xeq + yeq * yeq + zeq * zeq)
 
-    %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
+#    %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
+    %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
+
   end
 
   # returns the mean orbital elements for planet on day

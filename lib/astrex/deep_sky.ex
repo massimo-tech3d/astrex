@@ -26,6 +26,8 @@ defmodule Astrex.DeepSky do
     - openclusters:
     - globularclusters:
     - nebulas: (all kinds)
+
+    Coordinates are returned as DMS (Declination) and HMS (AR).
   """
 
   defp catalog do
