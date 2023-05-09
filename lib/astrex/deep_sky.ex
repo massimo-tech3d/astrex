@@ -204,7 +204,7 @@ defmodule Astrex.DeepSky do
     Stream.filter(st, fn
       # ra is Hours dec is Degrees
       [_, _, ra_obj, dec_obj | _] ->
-        rao = Common.hms2hour(ra_obj) |> Common.hours2deg()
+        rao = Common.hms2hours(ra_obj) |> Common.hours2deg()
         deco = Common.dms2deg(dec_obj)
 
         %{alt: alt, az: _az} = Astrex.eq2az(%{ra: rao, dec: deco})
