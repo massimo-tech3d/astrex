@@ -98,8 +98,8 @@ defmodule Astrex.Common do
     receives a binary string
     returns HOURS in float format
   """
-  @spec hms2hour(binary) :: float
-  def hms2hour(angle) do
+  @spec hms2hours(binary) :: float
+  def hms2hours(angle) do
     [hour, minute, seconds] = String.split(angle, ":")
     {h, _} = Integer.parse(hour)
     {m, _} = Integer.parse(minute)
