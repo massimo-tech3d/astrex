@@ -51,9 +51,9 @@ defmodule Astrex.DeepSky do
 
   ## Examples
     iex> Astrex.Server.start_link
+
     iex> Astrex.DeepSky.find_object(:messier, 1)
-    %{
-      ar: "05:34:31.97",
+    %{ar: "05:34:31.97",
       constellation: "Tau",
       decl: "+22:00:52.1",
       id: "NGC1952",
@@ -62,8 +62,8 @@ defmodule Astrex.DeepSky do
       messier: "1"
     }
 
-    iex> Astrex.Server.start_link
     iex> Astrex.DeepSky.find_object(:ngc, 1952)
+
     %{
       ar: "05:34:31.97",
       constellation: "Tau",
@@ -77,14 +77,14 @@ defmodule Astrex.DeepSky do
     NGC 6554 is more than 15° below the horizon
     (on testing fake datetime and location)
 
-    iex> Astrex.Server.start_link
+    ## Examples
     iex> Astrex.DeepSky.find_object(:ngc, 6554, -15)
     %{}
 
     but it is found with searches down to -25° below the horizon
     (on testing fake datetime and location)
 
-    iex> Astrex.Server.start_link
+    ## Examples
     iex> Astrex.DeepSky.find_object(:ngc, 6554, -25)
     %{
       ar: "18:09:23.98",

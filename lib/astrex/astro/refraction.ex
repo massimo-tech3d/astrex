@@ -1,7 +1,7 @@
 defmodule Astrex.Astro.Refraction do
   # Meeus Atmospheric refraction - chapter 16
   @moduledoc """
-    Refraction can change significantly the altitude of an object.
+    Refraction can change significantly the apparent altitude of an object.
     The change depends solely on the altitude and is maximun on the
     horizon (objects may appear above the horizon when they are
     actually still below) and zero at the zenith
@@ -25,6 +25,10 @@ defmodule Astrex.Astro.Refraction do
     The apparent altitude corresponds to the digital setting circles readings
     The true altitude allows to precisely calculate the equatorial coordinates
     of the point the telescope is aiming at.
+
+    ## Examples
+      iex> Astrex.Astro.Refraction.true_alt(%{alt: 45, az: 180})
+      %{alt: 44.98341920053572, az: 180}
   """
   @spec true_alt(T.altazimuth()) :: T.altazimuth()
   def true_alt(%{alt: apparent_alt, az: az}) do
@@ -37,12 +41,16 @@ defmodule Astrex.Astro.Refraction do
   end
 
   @doc """
-    Receives a T.altazimuth map including the true altitude
-    Returns a T.altazimuth map including the apparent altitude
+    Receives a T.altazimuth map including the true altitude.
+    Returns a T.altazimuth map including the apparent altitude.
 
-    The true altitude is calculated from the equatorial coordinates of the object
+    The true altitude is calculated from the equatorial coordinates of the object.
     The apparent altitude corresponds to where the digital setting circles must aim
     to center the object
+
+    ## Examples
+      iex> Astrex.Astro.Refraction.apparent_alt(%{alt: 45, az: 180})
+      %{alt: 45.016878460981225, az: 180}
   """
   @spec apparent_alt(T.altazimuth()) :: T.altazimuth()
   def apparent_alt(%{alt: true_alt, az: az}) do

@@ -5,7 +5,7 @@ defmodule Astrex.Astro.GeoMag do
   require Logger
 
   @moduledoc """
-    Calculates the Earth Magnetic field basing on local coordinates and current time
+    Calculates the Earth Magnetic field basing on local coordinates and (optionally) altitude.
     The calculations model is the WMM (World Magnetic Model).
 
     More information available here:

@@ -7,7 +7,7 @@ defmodule Astrex do
   @moduledoc """
   ## Introduction
 
-    Provides functions that perform astronomical calculations of various kinds.
+    The Astrex library provides functions that perform astronomical calculations of various kinds.
 
     - az2eq          converts from horizontal to equatorial coordinates
     - eq2az          converts from equatorial to horizontal coordinates
@@ -24,7 +24,7 @@ defmodule Astrex do
     and use the system time. This is handy for usage by applications that are geographically specific
     and work in real time, i.e. for telescope control.
 
-    However, all the functions cab be accessed directly from the respective modules by specifying the
+    However, all the functions can be accessed directly from the respective modules by specifying the
     desired coordinate and timestamp.
 
     Bonus
@@ -36,8 +36,8 @@ defmodule Astrex do
   ## Conventions
 
     The following conventions apply throughout the whole library (unless otherwise indicated):
-    - Longitudes East of Greenwich is POSITIVE: 0° to -180°
-    - Longitudes West of Greenwich is NEGATIVE: 0° to 180°
+    - Longitudes East of Greenwich is POSITIVE: 0° to 180°
+    - Longitudes West of Greenwich is NEGATIVE: 0° to -180°
     - Azimuth North is 0°
     - Azimuth East is 90°
     - Azimuth South is 180°
@@ -105,6 +105,13 @@ defmodule Astrex do
 
     The magnetic declination value shoud be added to a magnetic compass reading to get the real
     orientation (true north) of the device.
+
+    ## Examples
+      iex> Astrex.where_is(:saturn)
+      %{dec: "-10:25:52", ra: "22:36:54"}
+
+      iex> Astrex.where_is(:moon)
+      %{dec: "15:57:08", ra: "02:34:51"}
   """
   @spec mag_declination(number) :: {float(), float(), float(), binary()}
   def mag_declination(altitude \\ 0) do

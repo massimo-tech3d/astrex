@@ -8,17 +8,18 @@ defmodule Astrex.Astro.Transforms do
 
     Unless otherwise stated the formulas are implemented according to the Jean Meeus book:
     "Astronomical Algorithms"
+
     Chapter 13 - Transformation of Coordinates
 
     The following conventions apply:
-      Longitudes East of Greenwich is POSITIVE: 0° to -180°
-      Longitudes West of Greenwich is NEGATIVE: 0° to 180°
+      Longitudes East of Greenwich is POSITIVE: 0° to 180°
+      Longitudes West of Greenwich is NEGATIVE: 0° to -180°
       Azimuth North is 0°
       Azimuth East is 90°
       Azimuth South is 180°
       Azimuth West is 270°
 
-    All data need to expressed in radians, not in degrees or hours
+    All data need to be expressed in radians, not in degrees or hours
   """
 
   import Math
@@ -91,7 +92,7 @@ defmodule Astrex.Astro.Transforms do
   @doc """
     Converts ecliptical latitude and logitude to equatorial AR / DEC at a given time
 
-    Opposite to eq2ecl there are no reliable test numbers available
+    Opposite to eq2ecl, there are no reliable test numbers available
     Therefore this function can only be tested via round trip together with eq2ecl
 
     ## Examples
@@ -119,7 +120,6 @@ defmodule Astrex.Astro.Transforms do
     Returns:
     Longitude/Latitude (ecliptical) expressed in DEGREES
 
-    example see page 95
     ## Examples
       iex> date = ~N[1987-04-10 00:00:00]
       iex> obj  = %{ra: 116.328942, dec: 28.026183}

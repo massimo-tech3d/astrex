@@ -4,16 +4,12 @@ defmodule Astrex.Astro.SolarSystem do
 
   @moduledoc """
     This module exports only one function to retrieve the current equatorial
-    coordinates of the 9 planets (including Pluto) and of the Moon.
+    coordinates of the 9 planets (including Pluto) and of the Moon (via the Astrex.Astro.Moon module)
 
     The coordinates are returned in DMS (declination) and HMS (right ascension)
 
-    NOTE: currently works quite well for planets, calculations for the Moon
-          are accurate to some minutes of arc (4' in 50% of cases)
-
     Algoritm and original javascript source code from
     https://cdpn.io/lulunac27/fullpage/NRoyxE  - planets
-    http://www.stargazing.net/kepler/moon.html - Moon - QBasic code. accurate to 0.01 / 0.1 degrees
   """
 
   import Math
@@ -24,6 +20,21 @@ defmodule Astrex.Astro.SolarSystem do
   # machine error constant
   @eps 1.0e-12
 
+  @doc """
+  Receives an atom (requested object) and a datetime
+  returns the coordinates (RA/DEC) of the requested object
+
+  valid atoms:
+    :mercury
+    :venus
+    :moon
+    :mars
+    :jupiter
+    :saturn
+    :uranus
+    :neptune
+    :pluto
+  """
   @spec where_is(T.solar_system(), %NaiveDateTime{}) :: T.equatorial()
   def where_is(:moon, dt = %NaiveDateTime{}) do
     %{ra: ra, dec: dec} = Astrex.Astro.Moon.moon(dt)

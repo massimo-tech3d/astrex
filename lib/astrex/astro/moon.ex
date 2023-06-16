@@ -2,17 +2,22 @@ defmodule Astrex.Astro.Moon do
   # chapter 47 position
 
   @moduledoc """
-    Moon coordinates according to algoritm and QBasic source code from
+    This module exports one function that computes the Moon coordinates
+    according to algoritm and QBasic source code from:
+
     http://www.stargazing.net/kepler/moon.html  QBasic code.
     http://stargazing.net/kepler/moon2.html
 
-    faster than Meeus algoritm and reasonably accurate (4 arcminutes 99% of the times 1 arcmin 50% of times)
+    this is faster than Meeus algoritm and reasonably accurate (4 arcminutes 99% of the times 1 arcmin 50% of times)
   """
   import Math
   alias Astrex.Common, as: C
   alias Astrex.Astro.Dates
 
-  # http://stargazing.net/kepler/moon2.html
+  @doc """
+  receives a NaiveDateTime struct
+  returns the Moon's coordinates (RA/DEC) at the specified date/time
+  """
   def moon(dt = %NaiveDateTime{}) do
     # vedi se puoi/devi correggere Dates.day_number
     d = Dates.day_number(dt) + 1.5
