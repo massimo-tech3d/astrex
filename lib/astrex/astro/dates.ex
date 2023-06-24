@@ -49,7 +49,7 @@ defmodule Astrex.Astro.Dates do
     returns sidereal time expressed in HOURS
 
     Conventions:
-    Longitude negative east of Greenwich
+    Longitude is negative east of Greenwich
 
     The following example are time dependent and will return the shown results only in testing environment
 
