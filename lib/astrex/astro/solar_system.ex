@@ -38,7 +38,8 @@ defmodule Astrex.Astro.SolarSystem do
   @spec where_is(T.solar_system(), %NaiveDateTime{}) :: T.equatorial()
   def where_is(:moon, dt = %NaiveDateTime{}) do
     %{ra: ra, dec: dec} = Astrex.Astro.Moon.moon(dt)
-    %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
+    # %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
+    %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
   end
 
   def where_is(planet, dt = %NaiveDateTime{}) do
@@ -84,8 +85,8 @@ defmodule Astrex.Astro.SolarSystem do
     # distance from earth - not used but could be returned
     _rvec = sqrt(xeq * xeq + yeq * yeq + zeq * zeq)
 
-#    %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
-    %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
+    %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
+#    %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
 
   end
 
