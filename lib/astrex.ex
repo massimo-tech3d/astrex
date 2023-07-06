@@ -165,8 +165,8 @@ defmodule Astrex do
     2) calculates the AltAz coordinates for current time + one second
     3) calculates the difference, which are the speeds in degrees per second
 
-    The results are very close to the sidereal speeds calculated with the mathematical method
-    the difference is not enough to impact on motors rotation Hz
+    The results are very close to the sidereal speeds calculated with the mathematical method.
+    The difference is not enough to impact on motors rotation Hz
 
     ## Examples
       iex> Astrex.sidereal_speeds2(%{alt: 45, az: 10}, 1)
