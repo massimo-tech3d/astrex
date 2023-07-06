@@ -6,7 +6,7 @@ defmodule Astrex.Astro.SolarSystem do
     This module exports only one function to retrieve the current equatorial
     coordinates of the 9 planets (including Pluto) and of the Moon (via the Astrex.Astro.Moon module)
 
-    The coordinates are returned in DMS (declination) and HMS (right ascension)
+    The coordinates are returned in Degrees (declination) and Hours (right ascension)
 
     Algoritm and original javascript source code from
     https://cdpn.io/lulunac27/fullpage/NRoyxE  - planets
@@ -86,7 +86,7 @@ defmodule Astrex.Astro.SolarSystem do
     _rvec = sqrt(xeq * xeq + yeq * yeq + zeq * zeq)
 
     %{ra: ra |> C.deg2hours |> C.norm_24h, dec: dec}
-#    %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
+    # %{ra: ra |> C.deg2hours |> C.norm_24h |> C.hours2hms, dec: dec |> C.deg2dms}
 
   end
 

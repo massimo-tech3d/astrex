@@ -86,6 +86,14 @@ defmodule Astrex do
 
   @doc """
     Returns the current equatorial coordinates of the Moon or planets (including Pluto).
+
+    The coordinates are returned in Degrees (declination) and Hours (right ascension)
+
+    ## Examples
+      iex> Astrex.where_is(:saturn)
+      %{dec: -15.285237885762347, ra: 21.665144627176584}
+      iex> Astrex.where_is(:moon)
+      %{dec: 15.889732428707166, ra: 2.705974878446635}
   """
   @spec where_is(T.solar_system()) :: T.equatorial()
   def where_is(ss_object) do
@@ -105,13 +113,6 @@ defmodule Astrex do
 
     The magnetic declination value shoud be added to a magnetic compass reading to get the real
     orientation (true north) of the device.
-
-    ## Examples
-      iex> Astrex.where_is(:saturn)
-      %{dec: "-10:25:52", ra: "22:36:54"}
-
-      iex> Astrex.where_is(:moon)
-      %{dec: "15:57:08", ra: "02:34:51"}
   """
   @spec mag_declination(number) :: {float(), float(), float(), binary()}
   def mag_declination(altitude \\ 0) do

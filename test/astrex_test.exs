@@ -52,35 +52,35 @@ defmodule AstrexTest do
   test "where_is" do
     %{dec: dec, ra: ra} = Astrex.where_is(:mercury)
     assert_in_delta(dec, -20.39432467436096, 0.001)
-    assert_in_delta(ra, 294.57522654639325, 0.001)
+    assert_in_delta(ra, 19.638348436426217, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:venus)
     assert_in_delta(dec, -21.926200379572297, 0.001)
-    assert_in_delta(ra, 300.41173462836514, 0.001)
+    assert_in_delta(ra, 20.027448975224342, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:mars)
     assert_in_delta(dec, 24.523655972007912, 0.001)
-    assert_in_delta(ra, 66.44729248375374, 0.001)
+    assert_in_delta(ra, 4.429819498916916, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:jupiter)
     assert_in_delta(dec, -0.8186309742268472, 0.001)
-    assert_in_delta(ra, 1.344382091608832, 0.001)
+    assert_in_delta(ra, 0.08962547277392213, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:saturn)
     assert_in_delta(dec, -15.285237885762347, 0.001)
-    assert_in_delta(ra, 324.9771694076488, 0.001)
+    assert_in_delta(ra, 21.665144627176584, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:uranus)
     assert_in_delta(dec, 15.947591283053544, 0.001)
-    assert_in_delta(ra, 42.49070480980485, 0.001)
+    assert_in_delta(ra, 2.8327136539869904, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:neptune)
     assert_in_delta(dec, -4.040121291639756, 0.001)
-    assert_in_delta(ra, 353.64417313474394, 0.001)
+    assert_in_delta(ra, 23.57627820898293, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:pluto)
     assert_in_delta(dec, -22.895228533336187, 0.001)
-    assert_in_delta(ra, 299.8944211097495, 0.001)
+    assert_in_delta(ra, 19.99296140731663, 0.001)
 
     %{dec: dec, ra: ra} = Astrex.where_is(:moon)
     assert_in_delta(dec, 15.889732428707166, 0.001)

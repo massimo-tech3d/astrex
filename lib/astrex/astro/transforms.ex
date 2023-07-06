@@ -74,7 +74,6 @@ defmodule Astrex.Astro.Transforms do
       iex> Astrex.Astro.Transforms.eq2az(obj, site, date)
       %{alt: 15.122211840841763, az: 248.037813189937}
 
-
       Note: the original example returns az: 68.037813189937 because the azimuth convention
             is 0° South. We use 180° for south.
   """

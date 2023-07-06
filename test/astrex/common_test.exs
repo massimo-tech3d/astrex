@@ -19,7 +19,7 @@ defmodule CommonTest do
   end
 
   test "hours:minutes:seconds to hours" do
-    assert_in_delta(Astrex.Common.hms2hour("13:45:22.5547"), 13.75611111, 0.001)
+    assert_in_delta(Astrex.Common.hms2hours("13:45:22.5547"), 13.75611111, 0.001)
   end
 
   test "degrees:minutes:seconds to degrees" do
