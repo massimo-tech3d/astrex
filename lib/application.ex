@@ -1,5 +1,4 @@
 defmodule Astrex.Application do
-  # https://elixirforum.com/t/making-a-library-with-supervisor-genservers-cant-decide-whats-more-convenient-to-use/50325
   use Application
 
   @impl true
