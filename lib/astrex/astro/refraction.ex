@@ -26,7 +26,7 @@ defmodule Astrex.Astro.Refraction do
     The true altitude allows to precisely calculate the equatorial coordinates
     of the point the telescope is aiming at.
 
-    ## Examples
+  ## Examples
       iex> Astrex.Astro.Refraction.true_alt(%{alt: 45, az: 180})
       %{alt: 44.98341920053572, az: 180}
   """
@@ -48,7 +48,7 @@ defmodule Astrex.Astro.Refraction do
     The apparent altitude corresponds to where the digital setting circles must aim
     to center the object
 
-    ## Examples
+  ## Examples
       iex> Astrex.Astro.Refraction.apparent_alt(%{alt: 45, az: 180})
       %{alt: 45.016878460981225, az: 180}
   """

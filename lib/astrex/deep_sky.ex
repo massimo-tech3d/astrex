@@ -52,51 +52,48 @@ defmodule Astrex.DeepSky do
   i.e. above the horizon
 
   ## Examples
-    iex> Astrex.Server.start_link
+      iex> Astrex.Server.start_link
 
-    iex> Astrex.DeepSky.find_object(:messier, 1)
-    %{ar: "05:34:31.97",
-      constellation: "Tau",
-      decl: "+22:00:52.1",
-      id: "NGC1952",
-      kind: "SNR",
-      magnitude: "",
-      messier: "1"
-    }
+      iex> Astrex.DeepSky.find_object(:messier, 1)
+      %{ar: "05:34:31.97",
+        constellation: "Tau",
+        decl: "+22:00:52.1",
+        id: "NGC1952",
+        kind: "SNR",
+        magnitude: "",
+        messier: "1"
+      }
 
-    iex> Astrex.DeepSky.find_object(:ngc, 1952)
-
-    %{
-      ar: "05:34:31.97",
-      constellation: "Tau",
-      decl: "+22:00:52.1",
-      id: "NGC1952",
-      kind: "SNR",
-      magnitude: "",
-      messier: "1"
-    }
+      iex> Astrex.DeepSky.find_object(:ngc, 1952)
+      %{
+        ar: "05:34:31.97",
+        constellation: "Tau",
+        decl: "+22:00:52.1",
+        id: "NGC1952",
+        kind: "SNR",
+        magnitude: "",
+        messier: "1"
+      }
 
     NGC 6554 is more than 15° below the horizon
     (on testing fake datetime and location)
 
-    ## Examples
-    iex> Astrex.DeepSky.find_object(:ngc, 6554, -15)
-    %{}
+      iex> Astrex.DeepSky.find_object(:ngc, 6554, -15)
+      %{}
 
     but it is found with searches down to -25° below the horizon
     (on testing fake datetime and location)
 
-    ## Examples
-    iex> Astrex.DeepSky.find_object(:ngc, 6554, -25)
-    %{
-      ar: "18:09:23.98",
-      constellation: "Sgr",
-      decl: "-18:22:43.3",
-      id: "NGC6554",
-      kind: "OCl",
-      magnitude: "",
-      messier: ""
-    }
+      iex> Astrex.DeepSky.find_object(:ngc, 6554, -25)
+      %{
+        ar: "18:09:23.98",
+        constellation: "Sgr",
+        decl: "-18:22:43.3",
+        id: "NGC6554",
+        kind: "OCl",
+        magnitude: "",
+        messier: ""
+      }
   """
   @spec find_object(binary, integer, integer) :: map
   def find_object(catalog, id, minimum_altitude \\ 0) do
@@ -125,39 +122,39 @@ defmodule Astrex.DeepSky do
   returns a list of objects
 
   ## Examples
-    iex> Astrex.Server.start_link
-    iex> Astrex.DeepSky.select_objects(10, :nebulas, true, 25)
-    [
-      ["NGC6720", "PN", "18:53:35.01", "+33:01:42.9", "Lyr", "9.70", "57"],
-      ["NGC6853", "PN", "19:59:36.38", "+22:43:15.7", "Vul", "7.60", "27"]
-    ]
+      iex> Astrex.Server.start_link
+      iex> Astrex.DeepSky.select_objects(10, :nebulas, true, 25)
+      [
+        ["NGC6720", "PN", "18:53:35.01", "+33:01:42.9", "Lyr", "9.70", "57"],
+        ["NGC6853", "PN", "19:59:36.38", "+22:43:15.7", "Vul", "7.60", "27"]
+      ]
 
     Two Messier nebulas found 25°+ above the horizon at the mock time/mock location
 
-    iex> Astrex.Server.start_link
-    iex> Astrex.DeepSky.select_objects(10, :nebulas, 25)
-    [
-      ["IC0405", "Neb", "05:16:29.48", "+34:21:22.2", "Aur", "10.00", ""],
-      ["IC1805", "Cl+N", "02:32:41.51", "+61:27:24.8", "Cas", "7.03", ""],
-      ["IC1848", "Cl+N", "02:51:10.59", "+60:24:08.9", "Cas", "6.87", ""],
-      ["IC5070", "HII", "20:51:00.72", "+44:24:05.4", "Cyg", "8.00", ""],
-      ["IC5146", "Cl+N", "21:53:28.76", "+47:16:00.9", "Cyg", "7.82", ""],
-      ["NGC0246", "PN", "00:47:03.36", "-11:52:19.0", "Cet", "8.00", ""],
-      ["NGC1499", "Neb", "04:03:14.42", "+36:22:02.9", "Per", "5.00", ""],
-      ["NGC1555", "RfN", "04:21:59.43", "+19:32:06.6", "Tau", "9.98", ""],
-      ["NGC6543", "PN", "17:58:33.39", "+66:37:59.5", "Dra", "9.79", ""],
-      ["NGC6720", "PN", "18:53:35.01", "+33:01:42.9", "Lyr", "9.70", "57"],
-      ["NGC6823", "Cl+N", "19:43:09.89", "+23:17:59.8", "Vul", "7.71", ""],
-      ["NGC6853", "PN", "19:59:36.38", "+22:43:15.7", "Vul", "7.60", "27"],
-      ["NGC6888", "HII", "20:12:06.55", "+38:21:17.8", "Cyg", "7.44", ""],
-      ["NGC6960", "SNR", "20:45:58.18", "+30:35:42.5", "Cyg", "7.00", ""],
-      ["NGC6992", "SNR", "20:56:19.07", "+31:44:33.9", "Cyg", "7.00", ""],
-      ["NGC6995", "SNR", "20:57:10.76", "+31:14:06.6", "Cyg", "7.00", ""],
-      ["NGC7000", "HII", "20:59:17.14", "+44:31:43.6", "Cyg", "4.00", ""],
-      ["NGC7023", "Neb", "21:01:35.62", "+68:10:10.4", "Cep", "7.20", ""],
-      ["NGC7380", "Cl+N", "22:47:21.01", "+58:07:56.7", "Cep", "7.62", ""],
-      ["NGC7662", "PN", "23:25:53.90", "+42:32:05.8", "And", "9.20", ""]
-    ]
+      iex> Astrex.Server.start_link
+      iex> Astrex.DeepSky.select_objects(10, :nebulas, 25)
+      [
+        ["IC0405", "Neb", "05:16:29.48", "+34:21:22.2", "Aur", "10.00", ""],
+        ["IC1805", "Cl+N", "02:32:41.51", "+61:27:24.8", "Cas", "7.03", ""],
+        ["IC1848", "Cl+N", "02:51:10.59", "+60:24:08.9", "Cas", "6.87", ""],
+        ["IC5070", "HII", "20:51:00.72", "+44:24:05.4", "Cyg", "8.00", ""],
+        ["IC5146", "Cl+N", "21:53:28.76", "+47:16:00.9", "Cyg", "7.82", ""],
+        ["NGC0246", "PN", "00:47:03.36", "-11:52:19.0", "Cet", "8.00", ""],
+        ["NGC1499", "Neb", "04:03:14.42", "+36:22:02.9", "Per", "5.00", ""],
+        ["NGC1555", "RfN", "04:21:59.43", "+19:32:06.6", "Tau", "9.98", ""],
+        ["NGC6543", "PN", "17:58:33.39", "+66:37:59.5", "Dra", "9.79", ""],
+        ["NGC6720", "PN", "18:53:35.01", "+33:01:42.9", "Lyr", "9.70", "57"],
+        ["NGC6823", "Cl+N", "19:43:09.89", "+23:17:59.8", "Vul", "7.71", ""],
+        ["NGC6853", "PN", "19:59:36.38", "+22:43:15.7", "Vul", "7.60", "27"],
+        ["NGC6888", "HII", "20:12:06.55", "+38:21:17.8", "Cyg", "7.44", ""],
+        ["NGC6960", "SNR", "20:45:58.18", "+30:35:42.5", "Cyg", "7.00", ""],
+        ["NGC6992", "SNR", "20:56:19.07", "+31:44:33.9", "Cyg", "7.00", ""],
+        ["NGC6995", "SNR", "20:57:10.76", "+31:14:06.6", "Cyg", "7.00", ""],
+        ["NGC7000", "HII", "20:59:17.14", "+44:31:43.6", "Cyg", "4.00", ""],
+        ["NGC7023", "Neb", "21:01:35.62", "+68:10:10.4", "Cep", "7.20", ""],
+        ["NGC7380", "Cl+N", "22:47:21.01", "+58:07:56.7", "Cep", "7.62", ""],
+        ["NGC7662", "PN", "23:25:53.90", "+42:32:05.8", "And", "9.20", ""]
+      ]
 
     The same selection returns 20 objects if the Messier requirement is not specified
   """
@@ -230,7 +227,6 @@ defmodule Astrex.DeepSky do
     end)
   end
 
-  # TODO capture all clause to skip this filter, pass all
   # Filters out all objects that are not of the specified type
   defp filter_type(st, type) do
     labels =

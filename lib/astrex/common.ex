@@ -27,9 +27,9 @@ defmodule Astrex.Common do
   @doc """
     formats an hour from hours to a string "hh:mm:ss"
 
-    ## Examples
-    iex> Astrex.Common.hours2hms(12.5587)
-    "12:33:31"
+  ## Examples
+      iex> Astrex.Common.hours2hms(12.5587)
+      "12:33:31"
   """
   def hours2hms(h) do
     hours = trunc(h)
@@ -42,9 +42,9 @@ defmodule Astrex.Common do
   @doc """
     formats an angle from degrees to a string "dd:mm:ss"
 
-    ## Examples
-    iex> Astrex.Common.hours2hms(174.1234)
-    "174:07:24"
+  ## Examples
+      iex> Astrex.Common.hours2hms(174.1234)
+      "174:07:24"
   """
   def deg2dms(d) do
     deg = trunc(d)
@@ -107,9 +107,9 @@ defmodule Astrex.Common do
     receives a binary string
     returns HOURS in float format
 
-    ## Examples
-    iex> Astrex.Common.hms2hours("12:33:31")
-    12.558611111111112
+  ## Examples
+      iex> Astrex.Common.hms2hours("12:33:31")
+      12.558611111111112
   """
   @spec hms2hours(binary) :: float
   def hms2hours(angle) do

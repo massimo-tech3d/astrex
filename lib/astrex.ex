@@ -17,12 +17,12 @@ defmodule Astrex do
     All these functions are location dependent (latitude and longitude) and generally are also time
     dependent.
 
-    The Astrex library provides a genserver to host local coordinates, which is responsibility of the
+    The library provides a genserver to host local coordinates, which is responsibility of the
     application to start, supervise and initialize with the local coordinates.
 
     All the functions from the main Astrex module will retrieve the local coordinates from the server
     and use the system time. This is handy for usage by applications that are geographically specific
-    and work in real time, i.e. for telescope control.
+    and work in real time, e.g. for telescope control.
 
     However, all the functions can be accessed directly from the respective modules by specifying the
     desired coordinate and timestamp.
@@ -44,7 +44,7 @@ defmodule Astrex do
     - Azimuth West is 270°
 
   ## Units
-    All data need to be expressed in degrees, not in deegrees:minutes:seconds nor in radians
+    Unless otherwise indicated. all data need to be expressed in degrees, not in deegrees:minutes:seconds nor in radians
 
   ## References
     The source of the algorithms is indicated in the docs of each function.
@@ -89,7 +89,7 @@ defmodule Astrex do
 
     The coordinates are returned in Degrees (declination) and Hours (right ascension)
 
-    ## Examples
+  ## Examples
       iex> Astrex.where_is(:saturn)
       %{dec: -15.285237885762347, ra: 21.665144627176584}
       iex> Astrex.where_is(:moon)
@@ -127,7 +127,7 @@ defmodule Astrex do
         "A Mathematical Description of the Control System for the William Herschel
         Telescope" R.A.Laing, Royal Greenwich Observatory" pages 2/3
 
-    ## Examples
+  ## Examples
       iex> Astrex.sidereal_speeds(%{alt: 45, az: 10})
       {4.5061593459496844e-4, 7.042059181503614e-4}
   """
@@ -168,7 +168,7 @@ defmodule Astrex do
     The results are very close to the sidereal speeds calculated with the mathematical method.
     The difference is not enough to impact on motors rotation Hz
 
-    ## Examples
+  ## Examples
       iex> Astrex.sidereal_speeds2(%{alt: 45, az: 10}, 1)
       {4.5187822290415625e-4, 7.061364708533802e-4}
   """

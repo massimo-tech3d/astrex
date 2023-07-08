@@ -40,7 +40,6 @@ defmodule Astrex.Astro.GeoMag do
       epoch: Epoch of the current datafile
 
   ## Examples
-
       iex> Astrex.Astro.GeoMag.mag_declination(%{lat: 45.5, long: 9.15})
       {3.3219734037666426, 61.709940202847136, 47715.72107126719, "2020.0"}
   """

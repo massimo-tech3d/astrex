@@ -53,9 +53,9 @@ defmodule Astrex.Astro.Dates do
 
     The following example are time dependent and will return the shown results only in testing environment
 
-    ## Examples
-        iex> Astrex.Astro.Dates.local_sidereal_time(9.15, Astrex.Common.ndt_now()) |> Astrex.Common.hours2hms
-        "00:08:11"
+  ## Examples
+      iex> Astrex.Astro.Dates.local_sidereal_time(9.15, Astrex.Common.ndt_now()) |> Astrex.Common.hours2hms
+      "00:08:11"
   """
   @spec local_sidereal_time(float(), %NaiveDateTime{}) :: float()
   def local_sidereal_time(long, dt = %NaiveDateTime{}) do

@@ -67,14 +67,14 @@ defmodule Astrex.Astro.Transforms do
     Returns : map: Altitude and Azimuth in DEGREES
 
     (see Meeus Astronomical Algorithms page 95 example 13.b)
-    ## Examples:
+  ## Examples:
       iex> site = %{lat: 38.921, long: 77.065}
       iex> obj  = %{ra: 347.316, dec: -6.719}
       iex> date = ~N[1987-04-10 19:21:00]
       iex> Astrex.Astro.Transforms.eq2az(obj, site, date)
       %{alt: 15.122211840841763, az: 248.037813189937}
 
-      Note: the original example returns az: 68.037813189937 because the azimuth convention
+      Note: the example from the book returns az: 68.037813189937 because the azimuth convention
             is 0° South. We use 180° for south.
   """
   def eq2az(%{ra: ra, dec: decl}, %{lat: lat, long: long}, dt = %NaiveDateTime{}) do
@@ -94,7 +94,7 @@ defmodule Astrex.Astro.Transforms do
     Opposite to eq2ecl, there are no reliable test numbers available
     Therefore this function can only be tested via round trip together with eq2ecl
 
-    ## Examples
+  ## Examples
       iex> test = %{dec: 25.989, ra: 277.892}  # or whatever coordinates
       iex> date = Astrex.Common.ndt_now()
       iex> Astrex.Astro.Transforms.eq2ecl(test, date) |> Astrex.Astro.Transforms.ecl2eq(date)
@@ -119,7 +119,7 @@ defmodule Astrex.Astro.Transforms do
     Returns:
     Longitude/Latitude (ecliptical) expressed in DEGREES
 
-    ## Examples
+  ## Examples
       iex> date = ~N[1987-04-10 00:00:00]
       iex> obj  = %{ra: 116.328942, dec: 28.026183}
       iex> Astrex.Astro.Transforms.eq2ecl(obj, date)
