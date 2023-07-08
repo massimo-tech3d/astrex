@@ -7,12 +7,11 @@ defmodule Astrex.MixProject do
       version: "0.3.4",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
       deps: deps(),
-
-      # Docs
-      name: "My App",
-      source_url: "https://github.com/USER/PROJECT",
-      homepage_url: "http://YOUR_PROJECT_HOMEPAGE",
+      name: "Astrex",
+      source_url: "https://github.com/massimo-tech3d/astrex",
       docs: [
         # The main page in the docs
         main: "Astrex",
@@ -32,6 +31,19 @@ defmodule Astrex.MixProject do
       {:math, "~> 0.6.0"},
       {:csv, "~> 3.0"},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+    ]
+  end
+
+  defp description do
+    "Calculations for astronomy in Elixir: coordinates conversions, planets and DSO positions etc."
+  end
+
+  defp package do
+    [
+      # These are the default files included in the package
+      files: ~w(lib priv .formatter.exs mix.exs README* LICENSE*),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/massimo-tech3d/astrex"}
     ]
   end
 end

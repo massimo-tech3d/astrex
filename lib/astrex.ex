@@ -136,7 +136,6 @@ defmodule Astrex do
     coords = coords |> C.map2rad()
     %{lat: lat, long: _long} = Astrex.Server.get_ll() |> C.map2rad()
 
-    # z = zenith distance = 90 - alt
     z = Math.pi() / 2 - coords.alt
     cosLat = Math.cos(lat)
     sinLat = Math.sin(lat)
