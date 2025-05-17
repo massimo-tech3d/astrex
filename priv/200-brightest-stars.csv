@@ -1,0 +1,200 @@
+Mag,Const,RA,Dec,Name,aka
+-1.4,Canis Major,06:45:09,-16:42:47,α-CMa,Sirius
+-0.6,Carina,06:23:57,-52:41:44,α-Car,Canopus
+-0.0,Centaurus,14:39:40,-60:50:06,α-Cen,Rigil Kentaurus
+0.0,Lyra,18:36:56,38:46:58,α-Lyr,Vega
+0.1,Auriga,05:16:41,45:59:56,α-Aur,Capella
+0.2,Bootes,14:15:40,19:11:14,α-Boo,Arcturus
+0.3,Orion,05:14:32,-08:12:05,β-Ori,Rigel
+0.4,Canis Minor,07:39:18,05:13:39,α-CMi,Procyon
+0.5,Eridanus,01:37:42,-57:14:11,α-Eri,Achernar
+0.6,Orion,05:55:10,07:24:25,α-Ori,Betelgeuse
+0.6,Centaurus,14:03:49,-60:22:22,β-Cen,Hadar
+0.9,Aquila,19:50:46,08:52:02,α-Aql,Altair
+1.0,Taurus,04:35:55,16:30:35,α-Tau,Aldebaran
+1.1,Virgo,13:25:11,-11:09:40,α-Vir,Spica
+1.1,Scorpius,16:29:24,-26:25:55,α-Sco,Antares
+1.2,Gemini,07:45:19,28:01:34,β-Gem,Pollux
+1.2,Piscis Austrinus,22:57:38,-29:37:18,α-PsA,Fomalhaut
+1.3,Crux,12:26:35,-63:05:56,α-Cru,Acrux
+1.3,Crux,12:47:43,-59:41:19,β-Cru,Mimosa
+1.3,Cygnus,20:41:25,45:16:49,α-Cyg,Deneb
+1.4,Centaurus,14:39:39,-60:50:22,α-Cen,
+1.4,Leo,10:08:22,11:58:01,α-Leo,Regulus
+1.5,Canis Major ,06:58:37,-28:58:19,ε-CMa,Adhara
+1.6,Gemini,07:34:35,31:53:18,α-Gem,Castor
+1.6,Crux,12:26:36,-63:05:58,α-Cru,
+1.6,Scorpius,17:33:36,-37:06:13,λ-Sco,Shaula
+1.6,Crux,12:31:09,-57:06:45,γ-Cru,Gacrux
+1.7,Orion,05:25:07,06:20:59,γ-Ori,Bellatrix
+1.7,Carina,09:13:12,-69:43:02,β-Car,Miaplacidus
+1.7,Taurus,05:26:17,28:36:28,β-Tau,Elnath
+1.7,Orion,05:36:12,-01:12:06,ε-Ori,Alnilam
+1.8,Ursa Major,12:54:01,55:57:35,ε-UMa,Alioth
+1.8,Grus,22:08:13,-46:57:38,α-Gru,Alnair
+1.8,Perseus,03:24:19,49:51:40,α-Per,Mirfak
+1.8,Sagittarius,18:24:10,-34:23:03,ε-Sgr,Kaus Australis
+1.8,Vela,08:09:31,-47:20:11,γ-Vel,
+1.8,Ursa Major,11:03:43,61:45:04,α-UMa,Dubhe
+1.8,Canis Major,07:08:23,-26:23:35,δ-CMa,Wezen
+1.9,Ursa Major,13:47:32,49:18:47,η-UMa,Alkaid
+1.9,Scorpius,17:37:19,-42:59:52,θ-Sco,Sargas
+1.9,Triangulum Australe,16:48:39,-69:01:39,α-TrA,Atria
+1.9,Orion,05:40:45,-01:56:33,ζ-Ori,Alnitak
+1.9,Auriga,05:59:31,44:56:50,β-Aur,Menkalinan
+1.9,Pavo,20:25:38,-56:44:05,α-Pav,Peacock
+1.9,Gemini,06:37:42,16:23:57,γ-Gem,Alhena
+1.9,Vela,08:44:42,-54:42:30,δ-Vel,
+1.9,Carina,08:22:30,-59:30:34,ε-Car,Avior
+2.0,Canis Major,06:22:41,-17:57:21,β-CMa,Mirzam
+2.0,Hydra,09:27:35,-08:39:30,α-Hya,Alphard
+2.0,Ursa Minor,02:31:47,89:15:50,α-UMi,Polaris
+2.0,Aries,02:07:10,23:27:45,α-Ari,Hamal
+2.0,Centaurus,14:06:40,-36:22:11,θ-Cen,Menkent
+2.0,Cetus,00:43:35,-17:59:12,β-Cet,Diphda
+2.1,Andromeda,00:08:23,29:05:26,α-And,Alpheratz
+2.1,Orion,05:47:45,-09:40:10,κ-Ori,Saiph
+2.1,Ursa Minor,14:50:42,74:09:19,β-UMi,Kochab
+2.1,Sagittarius,18:55:15,-26:17:47,σ-Sgr,Nunki
+2.1,Andromeda,01:09:43,35:37:14,β-And,Mirach
+2.1,Ophiuchus,17:34:56,12:33:38,α-Oph,Rasalhague
+2.1,Perseus,03:08:10,40:57:20,β-Per,Algol
+2.1,Grus,22:42:40,-46:53:04,β-Gru,
+2.1,Leo,11:49:03,14:34:20,β-Leo,Denebola
+2.2,Andromeda,02:03:53,42:19:47,γ-And,Almach
+2.2,Cassiopeia,00:56:42,60:43:00,γ-Cas,
+2.2,Vela,09:07:59,-43:25:57,λ-Vel,Suhail
+2.2,Cygnus,20:22:13,40:15:24,γ-Cyg,Sadr
+2.2,Puppis,08:03:35,-40:00:11,ζ-Pup,Naos
+2.2,Ursa Major,13:23:55,54:55:30,ζ-UMa,Mizar
+2.2,Corona Borealis,15:34:41,26:42:51,α-CrB,Alphecca
+2.2,Orion,05:32:00,-00:17:56,δ-Ori,Mintaka
+2.2,Leo,10:19:58,19:50:30,γ-Leo,Algieba
+2.2,Draco,17:56:36,51:29:20,γ-Dra,Eltanin
+2.2,Cassiopeia,00:40:30,56:32:13,α-Cas,Schedar
+2.2,Carina,09:17:05,-59:16:30,ι-Car,Aspidiske
+2.3,Scorpius,16:50:09,-34:17:35,ε-Sco,
+2.3,Cassiopeia,00:09:10,59:09:00,β-Cas,Caph
+2.3,Centaurus,13:39:53,-53:27:58,ε-Cen,
+2.3,Lupus,14:41:55,-47:23:17,α-Lup,
+2.3,Scorpius,16:00:20,-22:37:17,δ-Sco,Dschubba
+2.3,Centaurus,14:35:30,-42:09:27,η-Cen,
+2.4,Ursa Major,11:01:50,56:22:56,β-UMa,Merak
+2.4,Phoenix,00:26:17,-42:18:21,α-Phe,Ankaa
+2.4,Scorpius,17:42:29,-39:01:48,κ-Sco,
+2.4,Pegasus,21:44:11,09:52:30,ε-Peg,Enif
+2.4,Ursa Major,11:53:49,53:41:41,γ-UMa,Phecda
+2.4,Ophiuchus,17:10:22,-15:43:30,η-Oph,Sabik
+2.5,Canis Major,07:24:05,-29:18:11,η-CMa,Aludra
+2.5,Cygnus,20:46:12,33:58:12,ε-Cyg,
+2.5,Cepheus,21:18:34,62:35:07,α-Cep,Alderamin
+2.5,Pegasus,23:03:46,28:04:58,β-Peg,Scheat
+2.5,Vela,09:22:06,-55:00:38,κ-Vel,
+2.5,Pegasus,23:04:45,15:12:19,α-Peg,Markab
+2.5,Centaurus,12:08:21,-50:43:20,δ-Cen,
+2.5,Centaurus,13:55:32,-47:17:17,ζ-Cen,
+2.5,Cetus,03:02:16,04:05:23,α-Cet,Menkar
+2.6,Leo,11:14:06,20:31:26,δ-Leo,Zosma
+2.6,Ophiuchus,16:37:09,-10:34:01,ζ-Oph,
+2.6,Lepus,05:32:43,-17:49:20,α-Lep,Arneb
+2.6,Corvus,12:15:48,-17:32:31,γ-Crv,Gienah
+2.6,Sagittarius,19:02:36,-29:52:48,ζ-Sgr,Ascella
+2.6,Scorpius,16:05:26,-19:48:19,β-Sco,Acrab
+2.6,Lupus,14:58:31,-43:08:02,β-Lup,
+2.6,Serpens Caput,15:44:16,06:25:32,α-Ser,Unukalhai
+2.6,Musca,12:37:11,-69:08:08,α-Mus,
+2.6,Scorpius,17:30:45,-37:17:44,υ-Sco,Lesath
+2.6,Auriga,05:59:43,37:12:46,θ-Aur,
+2.7,Aries,01:54:38,20:48:29,β-Ari,Sheratan
+2.7,Columba,05:39:38,-34:04:27,α-Col,Phact
+2.7,Corvus,12:34:23,-23:23:49,9-Crv,β-Crv
+2.7,Auriga,04:56:59,33:09:57,3-Aur,ι-Aur
+2.7,Sagittarius,18:20:59,-29:49:41,δ-Sgr,Kaus Media
+2.7,Cassiopeia,01:25:49,60:14:06,δ-Cas,Ruchbah
+2.7,Bootes,13:54:41,18:23:54,η-Boo,Muphrid
+2.7,Puppis,07:17:08,-37:05:50,π-Pup,
+2.7,Aquila,19:46:15,10:36:47,γ-Aql,Tarazed
+2.7,Bootes,14:44:59,27:04:27,ε-Boo,Izar
+2.7,Vela,10:46:46,-49:25:12,μ-Vel,
+2.7,Centaurus,13:20:35,-36:42:44,ι-Cen,
+2.7,Libra,14:50:52,-16:02:30,α-Lib,Zubenelgenubi
+2.7,Ophiuchus,16:14:20,-03:41:41,δ-Oph,Yed Prior
+2.7,Draco,16:23:59,61:30:52,η-Dra,14-Dra
+2.7,Crux,12:15:08,-58:44:56,δ-Cru,
+2.7,Carina,10:42:57,-64:23:39,θ-Car,
+2.7,Virgo,12:41:40,-01:26:58,γ-Vir,Porrima
+2.8,Ophiuchus,17:43:28,04:34:04,β-Oph,Cebalrai
+2.8,Scorpius,16:35:52,-28:12:58,τ-Sco,
+2.8,Orion,05:35:25,-05:54:35,ι-Ori,
+2.8,Hercules,16:30:13,21:29:22,β-Her,Kornephoros
+2.8,Eridanus,05:07:51,-05:05:10,β-Eri,Cursa
+2.8,Hydrus,00:25:55,-77:15:10,β-Hyi,
+2.8,Draco,17:30:25,52:18:05,β-Dra,Rastaban
+2.8,Ara,17:31:50,-49:52:34,α-Ara,
+2.8,Ara,17:25:17,-55:31:47,β-Ara,
+2.8,Sagittarius,18:27:58,-25:25:21,λ-Sgr,Kaus Borealis
+2.8,Centaurus,12:41:31,-48:57:35,γ-Cen,
+2.8,Virgo,13:02:10,10:57:33,ε-Vir,Vindemiatrix
+2.8,Puppis,08:07:32,-24:18:14,ρ-Pup,Tureis
+2.8,Pegasus,00:13:14,15:11:00,γ-Peg,Algenib
+2.8,Lepus,05:28:14,-20:45:32,β-Lep,Nihal
+2.8,Triangulum Australe,15:55:08,-63:25:57,β-TrA,
+2.8,Triangulum Australe,15:18:54,-68:40:46,γ-TrA,
+2.8,Tucana,22:18:30,-60:15:34,α-Tuc,
+2.8,Perseus,03:54:07,31:53:00,ζ-Per,
+2.9,Hercules,16:41:17,31:36:06,ζ-Her,
+2.9,Capricornus,21:47:02,-16:07:42,δ-Cap,
+2.9,Hydrus,01:58:45,-61:34:11,α-Hyi,
+2.9,Taurus,03:47:29,24:06:17,η-Tau,Alcyone
+2.9,Gemini,07:34:36,31:53:19,α-Gem,
+2.9,Canis Minor,07:27:09,08:17:21,β-CMi,Gomeisa
+2.9,Canes Venatici,12:56:01,38:19:07,α-CVn,Cor Caroli
+2.9,Scorpius,15:58:51,-26:06:51,π-Sco,
+2.9,Aquarius,21:31:33,-05:34:16,β-Aqr,Sadalsuud
+2.9,Gemini,06:22:57,22:30:49,μ-Gem,13-Gem
+2.9,Sagittarius,19:09:45,-21:01:25,π-Sgr,41-Sgr
+2.9,Scorpius,16:21:11,-25:35:34,σ-Sco,20-Sco
+2.9,Perseus,03:57:51,40:00:36,ε-Per,45-Per
+2.9,Cygnus,19:44:58,45:07:51,δ-Cyg,18-Cyg
+2.9,Puppis,06:49:56,-50:36:52,τ-Pup,
+2.9,Pegasus,22:43:00,30:13:16,η-Peg,Matar
+2.9,Aquarius,22:05:47,-00:19:11,α-Aqr,Sadalmelik
+2.9,Perseus,03:04:47,53:30:23,γ-Per,
+3.0,Aquila,19:05:24,13:51:46,ζ-Aql,
+3.0,Eridanus,03:58:01,-13:30:30,γ-Eri,Zaurak
+3.0,Sagittarius,18:05:48,-30:25:26,γ-Sgr,Alnasl
+3.0,Leo,09:45:51,23:46:27,ε-Leo,
+3.0,Corvus,12:29:51,-16:30:57,δ-Crv,Algorab
+3.0,Lupus,15:35:08,-41:10:00,γ-Lup,
+3.0,Grus,21:53:55,-37:21:53,γ-Gru,
+3.0,Gemini,06:43:55,25:07:51,ε-Gem,Mebsuta
+3.0,Ursa Major,11:09:39,44:29:54,ψ-UMa,52-UMa
+3.0,Carina,09:47:06,-65:04:19,υ-Car,
+3.0,Taurus,05:37:38,21:08:32,ζ-Tau,
+3.0,Hydra,13:18:55,-23:10:18,γ-Hya,
+3.0,Scorpius,16:51:52,-38:02:50,μ¹-Sco,
+3.0,Triangulum,02:09:32,34:59:14,β-Tri,
+3.0,Scorpius,17:47:35,-40:07:37,ι¹-Sco,
+3.0,Canis Major,07:03:01,-23:49:59,O-CMa,
+3.0,Corvus,12:10:07,-22:37:10,ε-Crv,
+3.0,Perseus,03:42:55,47:47:15,δ-Per,
+3.0,Canis Major,06:20:18,-30:03:48,ζ-CMa,Furud
+3.0,Auriga,05:01:58,43:49:23,ε-Aur,
+3.0,Ursa Minor,15:20:43,71:50:02,γ-UMi,Pherkad
+3.0,Bootes,14:32:04,38:18:28,γ-Boo,Seginus
+3.0,Ursa Major,10:22:19,41:29:58,μ-UMa,Tania Australis
+3.1,Draco,19:12:33,67:39:43,δ-Dra,Altais
+3.1,Cygnus,19:30:43,27:57:34,β¹-Cyg,Albireo
+3.1,Capricornus,20:21:00,-14:46:53,β-Cap,Dabih
+3.1,Musca,12:46:16,-68:06:28,β-Mus,
+3.1,Centaurus,11:35:46,-63:01:11,λ-Cen,
+3.1,Centaurus,14:59:09,-42:06:15,κ-Cen,
+3.1,Indus,20:37:34,-47:17:28,α-Ind,
+3.1,Ara,16:58:37,-55:59:25,ζ-Ara,
+3.1,Hydra,08:55:23,05:56:44,ζ-Hya,
+3.1,Hercules,17:15:01,24:50:18,δ-Her,Sarin
+3.1,Columba,05:50:57,-35:45:59,β-Col,Wazn
+3.1,Hydra,10:49:37,-16:11:33,ν-Hya,
+3.1,Lynx,09:21:03,34:23:33,α-Lyn,
+3.1,Sagittarius,18:17:37,-36:45:42,η-Sgr,
+3.1,Sagittarius,18:45:39,-26:59:26,φ-Sgr,
