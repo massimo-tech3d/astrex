@@ -50,6 +50,9 @@ defmodule Astrex do
 
   ## References
     The source of the algorithms is indicated in the docs of each function.
+
+  ## Epoch: the WMM.COF file is updated to 2025 epoc. Unfortunately the WMM does not publish a link to the latest WMM file,
+     each subsequent epoc needs to be downloaded and updated manually when published. Each epoc file is valid for several years
   """
 
   @mu 7.272e-5  # sidereal rate = earth rotation rate = 7.272 * 10^-5 rad/s
