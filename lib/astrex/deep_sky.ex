@@ -27,7 +27,7 @@ defmodule Astrex.DeepSky do
     - globularclusters:
     - nebulas: (all kinds)
 
-    Note: Coordinates of the objects are returned in DMS and HMS (strings)
+    Note: Coordinates of the objects are returned in (+/-)dd:mm:ss and hh:mm:ss (strings)
           this is how they are stored in the catalog and are not converted in order
           not to loose compatibility with new possible catalog releases.
   """

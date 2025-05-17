@@ -30,7 +30,7 @@ defmodule Astrex.Astro.GeoMag do
   @doc """
     Requires latitude and longitude expressed in decimal degrees (not deg, min, sec)
     - Latitude: between 0° and 90° -- southern latitudes are negative
-    - Longitude: between 0° and +/- 180° -- western logitudes are negative
+    - Longitude: between 0° and +/- 180° -- western longitudes are negative
     - Altitude: in km above sea level - optional parameter, default is 0
 
   ## Returns

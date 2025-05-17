@@ -89,10 +89,10 @@ defmodule AstrexTest do
 
   test "mag_declination" do
     {a, b, c, d} = Astrex.mag_declination
-    assert_in_delta(a, 0.6686678827935262, 0.001)
-    assert_in_delta(b, 66.48654481032914, 0.001)
-    assert_in_delta(c, 49003.79933941989, 0.001)
-    assert d == "2020.0"
+    assert d == "2025.0"
+    assert_in_delta(a, 0.6096713955564532, 0.001)  # WMM.COF 2025
+    assert_in_delta(b, 66.49113626555312, 0.001)  # WMM.COF 2025
+    assert_in_delta(c, 48990.15325101367, 0.001)  # WMM.COF 2025
   end
 
   test "sidereal_speeds" do

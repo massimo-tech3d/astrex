@@ -4,6 +4,8 @@ defmodule Astrex do
   alias Astrex.Types, as: T
   alias Astrex.Astro.Transforms, as: Tr
 
+  # https://geomag.bgs.ac.uk/data_service/models_compass/wmm_calc.html
+  # calculates all parameters
   @moduledoc """
   ## Introduction
 
