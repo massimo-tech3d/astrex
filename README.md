@@ -8,6 +8,10 @@ provides functions to perfom typical astronomy calculations such as:
 - calculates the magnetic declination to enable finding the "true north"
 - includes a full blown NGC and IC objects database with query functionalities
 
+## History
+- version 0.3.4 - first public release
+- version 0.4.0 - update WMM.COF to 2025 release - added 200 brightest stars catalogue
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
@@ -16,7 +20,7 @@ by adding `astrex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:astrex, "~> 0.3.0"}
+    {:astrex, "~> 0.4.0"}
   ]
 end
 ```
