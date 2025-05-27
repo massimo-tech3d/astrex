@@ -4,8 +4,8 @@ defmodule Astrex.MixProject do
   def project do
     [
       app: :astrex,
-      version: "0.4.0",
-      elixir: "~> 1.13",
+      version: "0.4.1",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
@@ -28,9 +28,9 @@ defmodule Astrex.MixProject do
 
   defp deps do
     [
-      {:math, "~> 0.6.0"},
-      {:csv, "~> 3.0"},
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+      {:math, "~> 0.7.0"},
+      {:csv, "~> 3.2.2"},
+      {:ex_doc, "~> 0.38.2", only: :dev, runtime: false}
     ]
   end
 

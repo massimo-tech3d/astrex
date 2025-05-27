@@ -51,8 +51,14 @@ defmodule Astrex do
   ## References
     The source of the algorithms is indicated in the docs of each function.
 
-  ## Epoch: the WMM.COF file is updated to 2025 epoc. Unfortunately the WMM does not publish a link to the latest WMM file,
-     each subsequent epoc needs to be downloaded and updated manually when published. Each epoc file is valid for several years
+  ## VERSIONS
+     1.3.1 Initial public release
+     1.4.0 the WMM.COF file is updated to 2025 epoc. Unfortunately the WMM does not publish a link to the latest WMM file, each
+           subsequent epoc needs to be downloaded and updated manually when published. Each epoc file is valid for several years
+
+           Added locationing of bright stars with a database of 200 stars, all above magnitude 3.1
+     1.4.1 Prevented error due to Gimbal Lock in sidereal_speeds/1
+           Updated dependencies
   """
 
   @mu 7.272e-5  # sidereal rate = earth rotation rate = 7.272 * 10^-5 rad/s
@@ -149,9 +155,11 @@ defmodule Astrex do
     cosZ = Math.cos(z)
     sinZ = Math.sin(z)
 
-    # -zRate
     altRate = (sinAz * cosLat * @mu) |> rad2deg
-    azRate = (@mu * (sinLat * sinZ - cosLat * cosZ * cosAz) / sinZ) |> rad2deg
+    azRate = case sinZ do
+      0.0 -> 0   # Gimbal lock - impose AZ speed to zero
+      _   -> (@mu * (sinLat * sinZ - cosLat * cosZ * cosAz) / sinZ) |> rad2deg
+    end
 
     {altRate, azRate}
   end
