@@ -52,14 +52,14 @@ defmodule Astrex do
     The source of the algorithms is indicated in the docs of each function.
 
   ## VERSIONS
-     1.3.1 Initial public release
-     1.4.0 the WMM.COF file is updated to 2025 epoc. Unfortunately the WMM does not publish a link to the latest WMM file, each
+     0.3.1 Initial public release
+     0.4.0 the WMM.COF file is updated to 2025 epoc. Unfortunately the WMM does not publish a link to the latest WMM file, each
            subsequent epoc needs to be downloaded and updated manually when published. Each epoc file is valid for several years
 
            Added locationing of bright stars with a database of 200 stars, all above magnitude 3.1
-     1.4.1 Prevented error due to Gimbal Lock in sidereal_speeds/1
+     0.4.1 Prevented error due to Gimbal Lock in sidereal_speeds/1
            Updated dependencies
-     1.5.0 Changed eq2az and az2eq algorithms that were malfunctioning in some cases
+     0.5.0 Changed eq2az and az2eq algorithms that were malfunctioning in some cases
   """
 
   @mu 7.272e-5  # sidereal rate = earth rotation rate = 7.272 * 10^-5 rad/s
