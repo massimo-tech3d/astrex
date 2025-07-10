@@ -5,42 +5,44 @@ defmodule Astrex.Astro.Dates do
   @moduledoc """
     This module provides high accuracy functions to calculate key date values
     for further astronomical calculations.
-    - Greenwhich Mean Standard Time
+    - Greenwhich Sidereal Time
     - Local Sidereal Time
     - Julian Day with decimal precision (if decimals not required, Timex.to_julian can be used instead)
     - Julian Century
 
-    Algorithms and coefficients to calculate GMST and LST have been taken
-    form the following articles:
-      https://astronomy.stackexchange.com/questions/24859/local-sidereal-time
-      https://squarewidget.com/astronomical-calculations-sidereal-time/
+    Algorithms and coefficients to calculate GST, LST and Julian Day/Century have been taken
+    form the following references:
+      Astronomical Algorithms - J.Meeus - Chapters 7 and 12
+      Practical Astronomy with your calculator - Peter Duffet et al. - Chapters 12 and 14
 
   """
   alias Astrex.Common, as: C
+  require Logger
 
   @doc """
-    Greenwitch Mean Sidereal Time for a given day/time
+    Greenwitch Sidereal Time for a given day/time
 
     site where to confirm the calculation for arbitrary location and current time
     https://astro.subhashbose.com/siderealtime/?longitude=9.15
   """
-  @spec gmst(%NaiveDateTime{}) :: float()
-  def gmst(dt = %NaiveDateTime{}) do
+  @spec gst(%NaiveDateTime{}) :: float()
+  def gst(dt = %NaiveDateTime{}) do
     hour = dt.hour
     minute = dt.minute
     {micros, _} = dt.microsecond
     seconds = dt.second + micros / Math.pow(10, 6)
 
     dt = %NaiveDateTime{dt | hour: 0, minute: 0, second: 0, microsecond: {0, 0}}
-    t = julian_century(dt)
 
+    t = julian_century(dt)
     t2 = t * t
     t3 = t2 * t
-    sid = 100.46061837 + 36000.770053608 * t + 0.000387933 * t2 - t3 / 38_710_000
+    sid = (6.697374548 + 2400.051336 * t + 0.000025862 * t2 - 0.000000002 * t3) |> C.norm_24h()
+    # sid is expressed in hours
 
-    (sid + ((hour |> C.hours2deg()) + minute * 0.25 + seconds * 0.0041666666666666666666666666666667) * 1.00273790935)
-    |> C.deg2hours()
-    |> C.norm_24h()
+    ut_h = (hour + minute/60 + seconds /3600) * 1.002737909
+    (sid + ut_h) |> C.norm_24h()
+
   end
 
   @doc """
@@ -59,8 +61,8 @@ defmodule Astrex.Astro.Dates do
   """
   @spec local_sidereal_time(float(), %NaiveDateTime{}) :: float()
   def local_sidereal_time(long, dt = %NaiveDateTime{}) do
-    gmst = gmst(dt)
-    (gmst - (long |> C.deg2hours())) |> C.norm_24h()
+    gmst = gst(dt)
+    (gmst + (long |> C.deg2hours())) |> C.norm_24h()
   end
 
   @doc """
@@ -112,9 +114,7 @@ defmodule Astrex.Astro.Dates do
     y = day.year
     mins = day.minute
     h = day.hour + mins / 60
-
-    367 * y - Kernel.floor(7 * (y + Kernel.floor((m + 9) / 12)) / 4) + Kernel.floor(275 * m / 9) +
-      d - 730_531.5 + h / 24
+    367 * y - Kernel.floor(7 * (y + Kernel.floor((m + 9) / 12)) / 4) + Kernel.floor(275 * m / 9) + d - 730_531.5 + h / 24
   end
 
   defp daydecimals(h, m, s) do

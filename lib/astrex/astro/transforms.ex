@@ -28,8 +28,8 @@ defmodule Astrex.Astro.Transforms do
 
   @doc """
     Converts from AltAzimth coordinates to Equatorial Celestial coordinates
-            Follows the Azimuth convention of South @ 180° (performs the necessary
-            conversion to comply to Meeus algo which is South @ 0°)
+             according to algorithms from "Practical Astronomy with your calculator"
+             by Peter Duffet and Jonathan Zwart
     Receives: map: Altitude, Azimuth in DEGREES
               map: Latitude, Longitude in DEGREES
               NaiveDateTime
@@ -38,52 +38,61 @@ defmodule Astrex.Astro.Transforms do
 
     Note: does NOT take refraction into account
   """
-  def az2eq(%{alt: alt, az: az}, %{lat: lat, long: long}, dt = %NaiveDateTime{}) do
-    # hours
-    lst = Dates.local_sidereal_time(long, dt)
-    # degrees
-    lst = C.hours2deg(lst)
-    # degrees
-    az = az - 180
+  def az2eq(%{alt: alt, az: az_d}, %{lat: lat, long: long}, dt = %NaiveDateTime{}) do
+    lst_h = Dates.local_sidereal_time(long, dt)   # lst in hours
+    lst_d = C.hours2deg(lst_h)                    # lst in degrees
+    # IO.puts("LST ore #{lst_h} LST° #{lst_d}")
 
-    # degrees
-    ha = datan2(dsin(az), dcos(az) * dsin(lat) + dtan(alt) * dcos(lat))
-    # degrees
-    ra = (lst - ha) |> C.norm_360()
-    # degrees
-    dec = dasin(dsin(lat) * dsin(alt) - dcos(lat) * dcos(alt) * dcos(az))
+    az_r = az_d |> deg2rad
+    alt_r = alt |> deg2rad
+    lat_r = lat |> deg2rad
 
-    %{ra: ra, dec: dec}
+    sind = sin(alt_r)*sin(lat_r)+cos(alt_r)*cos(lat_r)*cos(az_r)
+    dec_r = asin(sind)
+    dec_d = dec_r |> rad2deg
+
+    ha_r = atan2(-cos(alt_r)*cos(lat_r)*sin(az_r), (sin(alt_r)-sin(lat_r)*sind))
+    ha_d = ha_r |> rad2deg
+    ra_d = (lst_d - ha_d) |> C.norm_360
+
+    %{ra: ra_d, dec: dec_d}  # both in degrees
   end
 
   @doc """
     Converts from Equatorial Celestial coordinates to AltAzimth coordinates
-             according to Jean Meeus Algorithm
-             Follows the Azimuth convention of South @ 180° (performs the necessary
-             conversion to comply to Meeus algo which is South @ 0°)
+             according to algorithms from "Practical Astronomy with your calculator"
+             by Peter Duffet and Jonathan Zwart
     Receives: map: Right Ascension and Declination in DEGREES
               map: Latitude, Longitude in DEGREES
               NaiveDateTime
     Returns : map: Altitude and Azimuth in DEGREES
 
-    (see Meeus Astronomical Algorithms page 95 example 13.b)
   ## Examples:
-      iex> site = %{lat: 38.921, long: 77.065}
-      iex> obj  = %{ra: 347.316, dec: -6.719}
-      iex> date = ~N[1987-04-10 19:21:00]
+      iex> site = %{lat: 45.52, long: 9.21}
+      iex> obj  = %{ra: 97.3792, dec: 23.1486}
+      iex> date = ~N[2025-07-09 17:22:00]
       iex> Astrex.Astro.Transforms.eq2az(obj, site, date)
-      %{alt: 15.122211840841763, az: 248.037813189937}
+      %{alt: 9.55870765323566, az: 293.42107862051745}
 
       Note: the example from the book returns az: 68.037813189937 because the azimuth convention
             is 0° South. We use 180° for south.
   """
   def eq2az(%{ra: ra, dec: decl}, %{lat: lat, long: long}, dt = %NaiveDateTime{}) do
     # degrees
-    lha = (Dates.local_sidereal_time(long, dt) |> C.hours2deg()) - ra
-    # degrees
-    az = (datan2(dsin(lha), dcos(lha) * dsin(lat) - dtan(decl) * dcos(lat)) + 180) |> C.norm_360()
-    # degrees
-    alt = dasin(dsin(lat) * dsin(decl) + dcos(lat) * dcos(decl) * dcos(lha))
+    lst_h = Dates.local_sidereal_time(long, dt)
+    lha_h = (lst_h - ra/15)  # lha in hours
+    lha_d = lha_h |> C.hours2deg |> C.norm_360          # lha in degrees
+
+    decl_r = decl |> deg2rad
+    lat_r = lat |> deg2rad
+    lha_r = lha_d |> deg2rad
+
+    alt_r = asin(sin(decl_r) * sin(lat_r) + cos(decl_r) * cos(lat_r)*cos(lha_r))
+    az_r  = atan2(-cos(decl_r) * cos(lat_r) * sin(lha_r), sin(decl_r) - sin(lat_r) * sin(alt_r))
+
+    alt = alt_r |> rad2deg
+    az = az_r |> C.norm_2pi |> rad2deg
+    # tutto OK
 
     %{alt: alt, az: az}
   end
@@ -103,10 +112,14 @@ defmodule Astrex.Astro.Transforms do
       PASSES with float operations approximation
   """
   def ecl2eq(%{longitude: lambda, latitude: beta}, dt = %NaiveDateTime{}) do
-    e = ecliptic_obliquity(dt)
+    e = ecliptic_obliquity(dt)  # in degrees
 
-    ar = datan2(dsin(lambda) * dcos(e) - dtan(beta) * dsin(e), dcos(lambda)) |> C.norm_360()
-    decl = dasin(dsin(beta) * dcos(e) + dcos(beta) * dsin(e) * dsin(lambda))
+    lambda_r = lambda |> deg2rad
+    beta_r = beta |> deg2rad
+    e_r = e |> deg2rad
+
+    ar = atan2(sin(lambda_r) * cos(e_r) - tan(beta_r) * sin(e_r), cos(lambda_r)) |> rad2deg |> C.norm_360()
+    decl = asin(sin(beta_r) * cos(e_r) + cos(beta_r) * sin(e_r) * sin(lambda_r)) |> rad2deg
     # degrees
     %{ra: ar, dec: decl}
   end
@@ -123,17 +136,20 @@ defmodule Astrex.Astro.Transforms do
       iex> date = ~N[1987-04-10 00:00:00]
       iex> obj  = %{ra: 116.328942, dec: 28.026183}
       iex> Astrex.Astro.Transforms.eq2ecl(obj, date)
-      %{lambda: 113.215630, beta: 6.68417}  # in degrees
+      %{longitude: 113.215630, latitude: 6.68417}  # in degrees
 
       PASSES with float operations approximation
   """
   def eq2ecl(%{ra: ra, dec: dec}, dt = %NaiveDateTime{}) do
-    e = ecliptic_obliquity(dt)
+    e = ecliptic_obliquity(dt)  # in degrees
 
-    lambda =
-      datan2(dsin(ra) * dcos(e) + dtan(dec) * dsin(e), dcos(ra)) |> Astrex.Common.norm_360()
+    ra_r  = ra  |> deg2rad
+    dec_r = dec |> deg2rad
+    e_r   = e   |> deg2rad
 
-    beta = dasin(dsin(dec) * dcos(e) - dcos(dec) * dsin(e) * dsin(ra)) |> Astrex.Common.norm_360()
+    lambda = atan2(sin(ra_r) * cos(e_r) + tan(dec_r) * sin(e_r), cos(ra_r)) |> rad2deg |> C.norm_360()
+    beta = asin(sin(dec_r) * cos(e_r) - cos(dec_r) * sin(e_r) * sin(ra_r)) |> rad2deg |> C.norm_360()
+
     %{longitude: lambda, latitude: beta}
   end
 
@@ -141,27 +157,9 @@ defmodule Astrex.Astro.Transforms do
   # result in DEGREES
   defp ecliptic_obliquity(dt = %NaiveDateTime{}) do
     t = Dates.julian_century(dt)
+    t2 = t * t
+    t3 = t * t2
     # DEGREES
-    23.4392911 - 0.0130125 * t
-  end
-
-  defp dsin(a) do
-    sin(a |> deg2rad)
-  end
-
-  defp dcos(a) do
-    cos(a |> deg2rad)
-  end
-
-  defp dtan(a) do
-    tan(a |> deg2rad)
-  end
-
-  defp dasin(a) do
-    asin(a) |> rad2deg
-  end
-
-  defp datan2(a, b) do
-    atan2(a, b) |> rad2deg
+    23.4392912 - 0.012726389 * t - 0.000000167 * t2 + 0.000000503 * t3
   end
 end

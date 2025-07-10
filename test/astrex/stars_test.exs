@@ -21,91 +21,96 @@ defmodule StarsTest do
   end
 
   test "select stars by mag az alt" do
+    # fails
     assert Astrex.Stars.select_stars(0.5, %{az: 90, d_az: 45, type_az: "IN"}, %{alt: 60, d_alt: 30, type_alt: "IN"}) ==
       [
-        %{aka: "Capella", alt: 46.471899486382085, ra: "05:16:41", az: 69.23413116540189, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1"}
+        %{aka: "Capella", alt: 46.4718975212333, ra: "05:16:41", az: 69.2341293097702, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1"}
       ]
     assert Astrex.Stars.select_stars(0.5, %{az: 90, d_az: 45, type_az: "OUT"}, %{alt: 60, d_alt: 30, type_alt: "IN"}) ==
       []
     assert Astrex.Stars.select_stars(0.5, %{az: 90, d_az: 45, type_az: "IN"}, %{alt: 60, d_alt: 30, type_alt: "OUT"}) ==
       [
-        %{aka: "Sirius", alt: -13.057787690330622, ra: "06:45:09", az: 100.52410739917546, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4"},
-        %{aka: "Canopus", alt: -36.018291932764726, ra: "06:23:57", az: 131.73791696086482, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6"},
-        %{aka: "Rigel", alt: 7.176735179533099, ra: "05:14:32", az: 112.89401627493982, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3"},
-        %{aka: "Procyon", alt: -4.292759056473423, ra: "07:39:18", az: 76.05487291217511, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4"}
+        %{aka: "Sirius", alt: -13.05778975665663, ra: "06:45:09", az: 100.52410484812094, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4"},
+        %{aka: "Canopus", alt: -36.018293501033824, ra: "06:23:57", az: 131.73791533799601, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6"},
+        %{aka: "Rigel", alt: 7.1767332434105695, ra: "05:14:32", az: 112.89401353190283, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3"},
+        %{aka: "Procyon", alt: -4.292761096210711, ra: "07:39:18", az: 76.05487023407048, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4"}
       ]
     assert Astrex.Stars.select_stars(0.5, %{az: 90, d_az: 45, type_az: "OUT"}, %{alt: 60, d_alt: 30, type_alt: "OUT"}) ==
       [
-        %{aka: "Rigil Kentaurus", alt: -71.68742064459886, ra: "14:39:40", az: 228.18421733259387, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0"},
-        %{aka: "Vega", alt: 28.25618477533259, ra: "18:36:56", az: 297.8147144352378, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0"},
-        %{aka: "Arcturus", alt: -16.585528504402962, ra: "14:15:40", az: 337.6290585758656, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2"},
-        %{aka: "Achernar", alt: -19.256179758399565, ra: "01:37:42", az: 172.46262860557806, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5"}
+        %{aka: "Rigil Kentaurus", alt: -71.68741907823264, ra: "14:39:40", az: 228.18421892643713, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0"},
+        %{aka: "Vega", alt: 28.256186634187078, ra: "18:36:56", az: 297.81471232222304, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0"},
+        %{aka: "Arcturus", alt: -16.585527704500436, ra: "14:15:40", az: 337.6290553569299, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2"},
+        %{aka: "Achernar", alt: -19.25618003408295, ra: "01:37:42", az: 172.46262669334234, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5"}
       ]
    end
 
   test "select stars by mag az" do
+    # fails
     assert Astrex.Stars.select_stars(0.5, %{az: 90, d_az: 45, type_az: "IN"}) ==
       [
-        %{aka: "Sirius", alt: -13.057787690330622, az: 100.52410739917546, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
-        %{aka: "Canopus", alt: -36.018291932764726, az: 131.73791696086482, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
-        %{aka: "Capella", alt: 46.471899486382085, az: 69.23413116540189, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"},
-        %{aka: "Rigel", alt: 7.176735179533099, az: 112.89401627493982, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
-        %{aka: "Procyon", alt: -4.292759056473423, az: 76.05487291217511, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"}
+        %{aka: "Sirius", alt: -13.05778975665663, az: 100.52410484812094, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
+        %{aka: "Canopus", alt: -36.018293501033824, az: 131.73791533799601, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
+        %{aka: "Capella", alt: 46.4718975212333, az: 69.2341293097702, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"},
+        %{aka: "Rigel", alt: 7.1767332434105695, az: 112.89401353190283, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
+        %{aka: "Procyon", alt: -4.292761096210711, az: 76.05487023407048, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"}
       ]
     assert Astrex.Stars.select_stars(0.5, %{az: 90, d_az: 45, type_az: "OUT"}) ==
       [
-        %{aka: "Rigil Kentaurus", alt: -71.68742064459886, az: 228.18421733259387, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
-        %{aka: "Vega", alt: 28.25618477533259, az: 297.8147144352378, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
-        %{aka: "Arcturus", alt: -16.585528504402962, az: 337.6290585758656, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
-        %{aka: "Achernar", alt: -19.256179758399565, az: 172.46262860557806, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"}
+        %{aka: "Rigil Kentaurus", alt: -71.68741907823264, az: 228.18421892643713, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
+        %{aka: "Vega", alt: 28.256186634187078, az: 297.81471232222304, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
+        %{aka: "Arcturus", alt: -16.585527704500436, az: 337.6290553569299, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
+        %{aka: "Achernar", alt: -19.25618003408295, az: 172.46262669334234, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"}
       ]
   end
 
   test "select stars by mag alt" do
+    # fails
     assert Astrex.Stars.select_stars(0.5, %{alt: 60, d_alt: 30, type_alt: "IN"}) ==
       [
-        %{aka: "Capella", alt: 46.471899486382085, az: 69.23413116540189, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"}
+        %{aka: "Capella", alt: 46.4718975212333, az: 69.2341293097702, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"}
       ]
     assert Astrex.Stars.select_stars(0.5, %{alt: 60, d_alt: 30, type_alt: "OUT"}) ==
       [
-        %{aka: "Sirius", alt: -13.057787690330622, az: 100.52410739917546, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
-        %{aka: "Canopus", alt: -36.018291932764726, az: 131.73791696086482, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
-        %{aka: "Rigil Kentaurus", alt: -71.68742064459886, az: 228.18421733259387, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
-        %{aka: "Vega", alt: 28.25618477533259, az: 297.8147144352378, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
-        %{aka: "Arcturus", alt: -16.585528504402962, az: 337.6290585758656, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
-        %{aka: "Rigel", alt: 7.176735179533099, az: 112.89401627493982, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
-        %{aka: "Procyon", alt: -4.292759056473423, az: 76.05487291217511, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"},
-        %{aka: "Achernar", alt: -19.256179758399565, az: 172.46262860557806, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"}
+        %{aka: "Sirius", alt: -13.05778975665663, az: 100.52410484812094, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
+        %{aka: "Canopus", alt: -36.018293501033824, az: 131.73791533799601, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
+        %{aka: "Rigil Kentaurus", alt: -71.68741907823264, az: 228.18421892643713, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
+        %{aka: "Vega", alt: 28.256186634187078, az: 297.81471232222304, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
+        %{aka: "Arcturus", alt: -16.585527704500436, az: 337.6290553569299, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
+        %{aka: "Rigel", alt: 7.1767332434105695, az: 112.89401353190283, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
+        %{aka: "Procyon", alt: -4.292761096210711, az: 76.05487023407048, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"},
+        %{aka: "Achernar", alt: -19.25618003408295, az: 172.46262669334234, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"}
       ]
   end
 
   test "select stars by mag sorted by altitude" do
+    #fails
     assert Astrex.Stars.select_stars(0.5) ==
       [
-        %{aka: "Capella", alt: 46.471899486382085, az: 69.23413116540189, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"},
-        %{aka: "Vega", alt: 28.25618477533259, az: 297.8147144352378, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
-        %{aka: "Rigel", alt: 7.176735179533099, az: 112.89401627493982, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
-        %{aka: "Procyon", alt: -4.292759056473423, az: 76.05487291217511, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"},
-        %{aka: "Sirius", alt: -13.057787690330622, az: 100.52410739917546, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
-        %{aka: "Arcturus", alt: -16.585528504402962, az: 337.6290585758656, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
-        %{aka: "Achernar", alt: -19.256179758399565, az: 172.46262860557806, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"},
-        %{aka: "Canopus", alt: -36.018291932764726, az: 131.73791696086482, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
-        %{aka: "Rigil Kentaurus", alt: -71.68742064459886, az: 228.18421733259387, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
+        %{aka: "Capella", alt: 46.4718975212333, az: 69.2341293097702, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"},
+        %{aka: "Vega", alt: 28.256186634187078, az: 297.81471232222304, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
+        %{aka: "Rigel", alt: 7.1767332434105695, az: 112.89401353190283, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
+        %{aka: "Procyon", alt: -4.292761096210711, az: 76.05487023407048, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"},
+        %{aka: "Sirius", alt: -13.05778975665663, az: 100.52410484812094, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
+        %{aka: "Arcturus", alt: -16.585527704500436, az: 337.6290553569299, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
+        %{aka: "Achernar", alt: -19.25618003408295, az: 172.46262669334234, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"},
+        %{aka: "Canopus", alt: -36.018293501033824, az: 131.73791533799601, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
+        %{aka: "Rigil Kentaurus", alt: -71.68741907823264, az: 228.18421892643713, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"}
       ]
   end
 
   test "select stars by mag" do
+    # fails
     assert Astrex.Stars.select_stars(0.5) ==
       [
-        %{aka: "Capella", alt: 46.471899486382085, az: 69.23413116540189, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"},
-        %{aka: "Vega", alt: 28.25618477533259, az: 297.8147144352378, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
-        %{aka: "Rigel", alt: 7.176735179533099, az: 112.89401627493982, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
-        %{aka: "Procyon", alt: -4.292759056473423, az: 76.05487291217511, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"},
-        %{aka: "Sirius", alt: -13.057787690330622, az: 100.52410739917546, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
-        %{aka: "Arcturus", alt: -16.585528504402962, az: 337.6290585758656, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
-        %{aka: "Achernar", alt: -19.256179758399565, az: 172.46262860557806, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"},
-        %{aka: "Canopus", alt: -36.018291932764726, az: 131.73791696086482, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
-        %{aka: "Rigil Kentaurus", alt: -71.68742064459886, az: 228.18421733259387, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
+        %{aka: "Capella", alt: 46.4718975212333, az: 69.2341293097702, const: "Auriga", dec: "45:59:56", id: "α-Aur", mag: "0.1", ra: "05:16:41"},
+        %{aka: "Vega", alt: 28.256186634187078, az: 297.81471232222304, const: "Lyra", dec: "38:46:58", id: "α-Lyr", mag: "0.0", ra: "18:36:56"},
+        %{aka: "Rigel", alt: 7.1767332434105695, az: 112.89401353190283, const: "Orion", dec: "-08:12:05", id: "β-Ori", mag: "0.3", ra: "05:14:32"},
+        %{aka: "Procyon", alt: -4.292761096210711, az: 76.05487023407048, const: "Canis Minor", dec: "05:13:39", id: "α-CMi", mag: "0.4", ra: "07:39:18"},
+        %{aka: "Sirius", alt: -13.05778975665663, az: 100.52410484812094, const: "Canis Major", dec: "-16:42:47", id: "α-CMa", mag: "-1.4", ra: "06:45:09"},
+        %{aka: "Arcturus", alt: -16.585527704500436, az: 337.6290553569299, const: "Bootes", dec: "19:11:14", id: "α-Boo", mag: "0.2", ra: "14:15:40"},
+        %{aka: "Achernar", alt: -19.25618003408295, az: 172.46262669334234, const: "Eridanus", dec: "-57:14:11", id: "α-Eri", mag: "0.5", ra: "01:37:42"},
+        %{aka: "Canopus", alt: -36.018293501033824, az: 131.73791533799601, const: "Carina", dec: "-52:41:44", id: "α-Car", mag: "-0.6", ra: "06:23:57"},
+        %{aka: "Rigil Kentaurus", alt: -71.68741907823264, az: 228.18421892643713, const: "Centaurus", dec: "-60:50:06", id: "α-Cen", mag: "-0.0", ra: "14:39:40"},
       ]
   end
 

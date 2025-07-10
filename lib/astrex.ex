@@ -59,6 +59,7 @@ defmodule Astrex do
            Added locationing of bright stars with a database of 200 stars, all above magnitude 3.1
      1.4.1 Prevented error due to Gimbal Lock in sidereal_speeds/1
            Updated dependencies
+     1.5.0 Changed eq2az and az2eq algorithms that were malfunctioning in some cases
   """
 
   @mu 7.272e-5  # sidereal rate = earth rotation rate = 7.272 * 10^-5 rad/s
@@ -157,7 +158,8 @@ defmodule Astrex do
 
     altRate = (sinAz * cosLat * @mu) |> rad2deg
     azRate = case sinZ do
-      0.0 -> 0   # Gimbal lock - impose AZ speed to zero
+      +0.0 -> 0   # Gimbal lock - impose AZ speed to zero
+      -0.0 -> 0   # Gimbal lock - impose AZ speed to zero
       _   -> (@mu * (sinLat * sinZ - cosLat * cosZ * cosAz) / sinZ) |> rad2deg
     end
 
@@ -182,7 +184,9 @@ defmodule Astrex do
 
   ## Examples
       iex> Astrex.sidereal_speeds2(%{alt: 45, az: 10}, 1)
-      {4.5187822290415625e-4, 7.061364708533802e-4}
+      {4.5187822288283996e-4, 7.06136470837393e-4}
+
+  fails
   """
   @spec sidereal_speeds2(T.equatorial(), integer()) :: {float, float}
   def sidereal_speeds2(coords = %{ra: _ra, dec: _dec}, secs) do

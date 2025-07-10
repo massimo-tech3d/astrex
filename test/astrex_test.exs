@@ -34,6 +34,7 @@ defmodule AstrexTest do
   test "eq2az" do
     %{alt: alt, az: az} = Astrex.eq2az(Astrex.az2eq(@az1))
     assert_in_delta(alt, @az1.alt, 0.001)
+    # fails
     assert_in_delta(az, @az1.az, 0.001)
 
     %{alt: alt, az: az} = Astrex.eq2az(Astrex.az2eq(@az2))
@@ -97,6 +98,7 @@ defmodule AstrexTest do
 
   test "sidereal_speeds" do
     {alts, azs} = Astrex.sidereal_speeds(@az1)
+    # fails
     assert_in_delta(alts, 0.0018603785414155318, 0.001)
     assert_in_delta(azs, 0.00210722717010969, 0.001)
 

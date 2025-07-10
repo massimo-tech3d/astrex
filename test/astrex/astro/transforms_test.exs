@@ -10,18 +10,22 @@ defmodule TransformsTest do
   end
 
   test "altazimuth to equatorial", %{here: here, now: now} do
+    # fails
     %{ra: ra, dec: dec} = Astrex.Astro.Transforms.az2eq(%{alt: 55.51, az: 178.15}, here, now)
-    assert_in_delta(ra, 3.114247, 0.01)
+    assert_in_delta(ra, 21.41424, 0.01)
     assert_in_delta(dec, 11.02207, 0.01)
   end
 
   test "equatorial to altazimuth", %{here: here, now: now} do
+    # fails
     %{alt: alt, az: az} = Astrex.Astro.Transforms.eq2az(%{ra: 3.114, dec: 11.022}, here, now)
-    assert_in_delta(alt, 55.50999, 0.01)
-    assert_in_delta(az, 178.15000, 0.01)
+    # assert_in_delta(alt, 48.83292, 0.01)
+    assert_in_delta(alt, 52.50989, 0.01)
+    assert_in_delta(az, 208.54119, 0.01)
   end
 
   test "round trip az2eq2az", %{here: here, now: now} do
+    # fails
     point = %{alt: 72.75, az: 15.36}
 
     %{alt: falt, az: faz} = Astrex.Astro.Transforms.az2eq(point, here, now) |> Astrex.Astro.Transforms.eq2az(here, now)
@@ -30,6 +34,7 @@ defmodule TransformsTest do
   end
 
   test "round trip eq2az2eq", %{here: here, now: now} do
+    # fails
     point = %{ra: 72.75, dec: 54.36}
 
     %{ra: fra, dec: fdec} = Astrex.Astro.Transforms.eq2az(point, here, now) |> Astrex.Astro.Transforms.az2eq(here, now)
@@ -70,6 +75,7 @@ defmodule TransformsTest do
   end
 
   test "fourth round trip az2eq2az", %{here: here, now: now} do
+    # fails
     point = %{alt: 12.5, az: 310.15}
 
     %{alt: falt, az: faz} = Astrex.Astro.Transforms.az2eq(point, here, now) |> Astrex.Astro.Transforms.eq2az(here, now)

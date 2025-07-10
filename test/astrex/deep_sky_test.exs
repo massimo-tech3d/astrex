@@ -19,7 +19,7 @@ defmodule DeepSkyTest do
                magnitude: "",
                messier: "1"
              }
-
+    # fails - non trova l'oggetto perchè è sotto l'orizzonte -- cerca altro oggetto #######
     assert Astrex.DeepSky.find_object(:ngc, 1952) ==
              %{
                ar: "05:34:31.97",

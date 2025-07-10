@@ -1,10 +1,10 @@
 defmodule DatesTest do
   use ExUnit.Case
 
-  test "gmst" do
+  test "gst" do
     date = ~N[1987-04-10 19:21:00]
-    gmst = Astrex.Astro.Dates.gmst(date)
-    assert_in_delta(gmst, 8.582524, 0.01)
+    gst = Astrex.Astro.Dates.gst(date)
+    assert_in_delta(gst, 8.582524, 0.01)
   end
 
   test "julian_day 1" do
