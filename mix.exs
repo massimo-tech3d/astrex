@@ -4,8 +4,8 @@ defmodule Astrex.MixProject do
   def project do
     [
       app: :astrex,
-      version: "0.5.0",
-      elixir: "~> 1.18",
+      version: "0.5.1",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
